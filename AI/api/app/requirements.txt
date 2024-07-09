@@ -1,0 +1,12 @@
+fastapi==0.110
+uvicorn
+openai
+pydantic
+cohere
+tiktoken
+ai21
+google-generativeai
+langchain
+pinecone-client
+langchain_community
+langchain-experimental
