@@ -4,7 +4,7 @@ import Buttons from "../Button/Buttons";
 function Hero() {
   return (
     <>
-      <section className="w-full lg:w-[1200px] mx-auto px-4 py-16">
+      <section className="w-full  mt-[120px] mb-[90px]">
         <div className="mb-[30px] text-center flex flex-col items-center justify-center gap-8">
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4 lg:text-5xl">
