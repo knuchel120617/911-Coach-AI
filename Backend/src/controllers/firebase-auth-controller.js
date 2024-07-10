@@ -10,7 +10,15 @@ class AuthController {
     const { email, password } = req.body;
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        res.send(userCredential);
+        req.userData = {
+          email: req.body.email,
+          name: req.body.name
+        };
+        console.log('user registered', userCredential);
+        console.log('moving to next middleware');
+        // move to the next middleware
+        next();
+        //res.send(userCredential);
       })
       .catch((error) => {
         res.send(error);
