@@ -15,13 +15,13 @@ function Hero() {
               is now completely, 100% free.
             </p>
           </div>
-          <div className="mx-auto max-w-[221px]">
+          <div className="w-auto">
             <Buttons
               primary
               rounded
-              className="bg-[#10B981] text-white font-bold py-3 px-6 flex items-center justify-center w-full hover:bg-[#059669]"
+              className="text-white bg-[#10B981] px-4 py-2"
+              style={{ minWidth: "auto", width: "auto" }}
             >
-              <span className="mr-2">🚀</span>
               Get Started
             </Buttons>
           </div>

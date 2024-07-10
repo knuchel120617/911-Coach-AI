@@ -5,7 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 
-export default function CustomizedAccordions() {
+function Faq() {
   const [expanded, setExpanded] = useState("panel1");
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -13,7 +13,7 @@ export default function CustomizedAccordions() {
   };
 
   return (
-    <section className="mb-[120px]">
+    <section>
       <div className="w-full flex  flex-col justify-center items-center mb-[20px] gap-8 mr-[20px]">
         <Accordion
           className="border border-gray-300 w-full max-w-lg lg:max-w-[1200px]"
@@ -90,3 +90,5 @@ export default function CustomizedAccordions() {
     </section>
   );
 }
+
+export default Faq;
