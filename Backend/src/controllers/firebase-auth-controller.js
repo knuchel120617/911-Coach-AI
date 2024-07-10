@@ -6,7 +6,7 @@ import {
 const auth = getAuth();
 
 class AuthController {
-  registerUser(req, res) {
+  registerUser(req, res, next) {
     const { email, password } = req.body;
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -24,11 +24,18 @@ class AuthController {
         res.send(error);
       });
   }
-  loginUser(req, res) {
+  loginUser(req, res, next) {
     const { email, password } = req.body;
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        res.send(userCredential);
+        const user = userCredential.user;
+        return user.getIdToken();  // Get the access token
+      })
+      .then((token) => {
+        req.accessToken = token;  // Attach token to req object
+        console.log('token', token);
+        console.log('moving to next middleware');
+        next();  // Move to the next middleware
       })
       .catch((error) => {
         res.send(error);
