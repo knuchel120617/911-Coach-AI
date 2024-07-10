@@ -15,20 +15,14 @@ function Hero() {
               is now completely, 100% free.
             </p>
           </div>
-          <div className="flex  flex-col justify-center items-center gap-4  lg:flex-row">
+          <div className="mx-auto max-w-[221px]">
             <Buttons
-              className="w-[200px] text-white text-center pb-[60px] lg:w-[221px] lg:px-[20px] lg:py-[20px] lg:text-[18px] "
               primary
               rounded
+              className="bg-[#10B981] text-white font-bold py-3 px-6 flex items-center justify-center w-full hover:bg-[#059669]"
             >
+              <span className="mr-2">🚀</span>
               Get Started
-            </Buttons>
-            <Buttons
-              className="w-[200px]  text-[#009379] pb-[60px] text-center lg:w-[221px] lg:px-[20px] lg:py-[20px] lg:text-[18px] "
-              alternate
-              rounded
-            >
-              How It Works
             </Buttons>
           </div>
         </div>

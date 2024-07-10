@@ -13,7 +13,7 @@ export default function CustomizedAccordions() {
   };
 
   return (
-    <section>
+    <section className="mb-[120px]">
       <div className="w-full flex  flex-col justify-center items-center mb-[20px] gap-8 mr-[20px]">
         <Accordion
           className="border border-gray-300 w-full max-w-lg lg:max-w-[1200px]"
