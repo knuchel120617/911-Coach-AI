@@ -4,8 +4,6 @@ openai
 pydantic
 cohere
 tiktoken
-ai21
-google-generativeai
 langchain
 pinecone-client
 langchain_community
