@@ -2,12 +2,13 @@ import express from "express"
 import listEndpoints from "express-list-endpoints"
 import cors from "cors"
 import mongoose from "mongoose"
+import dotenv from 'dotenv';
 
 
-// import routers
+import usersRouter from "./routes/users.js";
 
 
-
+dotenv.config();
 const app = express()
 
 
@@ -24,11 +25,11 @@ const corsOptions = {
   }
 }
 
-app.use(express.json())
+app.use(express.json()) // Middleware to parse JSON
 app.use(cors(corsOptions))
 
 
-// app.user (route, router)
+app.use("/users", usersRouter);
 
 
 // ---------------- DATABASE ------------------
