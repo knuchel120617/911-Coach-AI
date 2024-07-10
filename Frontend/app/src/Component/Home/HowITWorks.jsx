@@ -15,9 +15,11 @@ function HowItWorks() {
   return (
     <section className="how-it-works py-16">
       <div className="container mx-auto px-4 flex flex-col items-center justify-center gap-8  lg:gap-16">
-        <div>
-          <h2>Key Features</h2>
-          <p>
+        <div className="text-center mb-[20px]">
+          <h2 className="text-[24px] font-bold leading-relaxed tracking-wide lg:text-[48px] mb-[20px]">
+            Key Features
+          </h2>
+          <p className="leading-7 lg:text-[18px]">
             EM-Buddy empowers you to become a more confident and effective
             dispatcher by providing you with the following features:
           </p>
