@@ -16,7 +16,7 @@ index_name = os.environ['PINECONE_INDEX_NAME'] = 'dispatch-ai'
 def extract_document_info(responses):
     return [f"""Document: {response["metadata"]["text"]}. Reference: {response["metadata"]["Reference"]}. Link: {response["metadata"]["Link"]}""" for response in responses['matches'] if response["score"] > 0.2]
 
-def question_answer(question, metadata):
+def question_answer(question):
 
     co = cohere.Client(cohere_secret_key)
     embeddings = CohereEmbeddings(cohere_api_key=cohere_secret_key, user_agent="dispatch-ai")
@@ -26,13 +26,12 @@ def question_answer(question, metadata):
     results = index.query(
         vector=query,
         top_k=3,
-        include_metadata=True,
-        filter= metadata
+        include_metadata=True
     )
     results = extract_document_info(results)
     if len(results) == 0:
         response = co.generate(
-            prompt=f"""You are a AI-powered assistant that answer questions related to medical emergencies. You should provide a concise and accurate response to the Emergency medical dispatcher agent. Add references if needed, here's the question: {question}""",
+            prompt=f"""You are a AI-powered assistant that answer questions related to a medical emergency: {emergency_type}. You should provide a concise and accurate response to the Emergency medical dispatcher agent. Add references if needed, here's the question: {question}""",
             model='command-xlarge-nightly',
             max_tokens=800,
             temperature=0.2,
@@ -41,7 +40,7 @@ def question_answer(question, metadata):
         )
     else:
         response = co.generate(
-            prompt=f"""You are a AI-powered assistant that answer questions related to medical emergencies. You should provide a concise and accurate response to the Emergency medical dispatcher agent based on these documents: {results}. Here's the question: {question}. Make sure to mention the references and the links below.""",
+            prompt=f"""You are a AI-powered assistant that answer questions related to a medical emergency: {emergency_type}. You should provide a concise and accurate response to the Emergency medical dispatcher agent based on these documents: {results}. Here's the question: {question}. Make sure to mention the references and the links below.""",
             model='command-xlarge-nightly',
             max_tokens=800,
             temperature=0.2,

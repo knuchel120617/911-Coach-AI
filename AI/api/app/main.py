@@ -25,9 +25,7 @@ async def root():
 @app.post("/qa")
 async def qa(request: RequestModel):
     message = request.message
-    emergency_type =  request.emergency_type
-    metadata = {'Emergency Type': emergency_type}
-    response = question_answer(message, metadata)
+    response = question_answer(message)
     return {"response": response}
 
 # Scenario Endpoint
