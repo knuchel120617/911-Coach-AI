@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -12,6 +13,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import Buttons from "../Button/Buttons";
 
 const NavBar = () => {
+  const naviage = useNavigate();
+  const handleClick = () => {
+    naviage("/signup");
+  };
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMenuToggle = () => {
@@ -83,6 +88,7 @@ const NavBar = () => {
               Contact Us
             </Typography>
             <Buttons
+              onClick={handleClick}
               primary
               rounded
               className="text-white bg-[#10B981] px-4 py-2"

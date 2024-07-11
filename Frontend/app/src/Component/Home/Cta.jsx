@@ -1,7 +1,12 @@
 import React from "react";
 import Buttons from "../Button/Buttons";
+import { useNavigate } from "react-router-dom";
 
 function Cta() {
+  const naviage = useNavigate();
+  const handleClick = () => {
+    naviage("/signup");
+  };
   return (
     <section className="mb-[120px]">
       <div className="container mx-auto text-center bg-[#f1fbf9] py-16">
@@ -13,6 +18,7 @@ function Cta() {
         </p>
         <div className="w-auto">
           <Buttons
+            onClick={handleClick}
             primary
             rounded
             className="text-white bg-[#10B981] px-4 py-2"
