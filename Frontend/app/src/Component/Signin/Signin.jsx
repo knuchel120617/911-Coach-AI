@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PersonIcon from "@mui/icons-material/Person";
+import { useNavigate } from "react-router-dom";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import Buttons from "../Button/Buttons";
@@ -8,6 +8,7 @@ const Signin = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const naviage = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -15,6 +16,7 @@ const Signin = () => {
     console.log("Full Name:", fullName);
     console.log("Email:", email);
     console.log("Password:", password);
+    naviage("/menu");
   };
 
   return (
@@ -22,7 +24,7 @@ const Signin = () => {
       <h1 className="text-3xl font-bold mb-4">Log into your account</h1>
       <p className="text-sm text-gray-600 mb-4">
         You don’t have an account?{" "}
-        <a href="/login" className="text-green-500 hover:underline">
+        <a href="/signup" className="text-green-500 hover:underline">
           Sign up
         </a>
       </p>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
@@ -8,9 +9,11 @@ const Signup = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    navigate("/menu");
     // Implement signup logic here
     console.log("Full Name:", fullName);
     console.log("Email:", email);
@@ -22,7 +25,7 @@ const Signup = () => {
       <h1 className="text-3xl font-bold mb-4">Sign Up</h1>
       <p className="text-sm text-gray-600 mb-4">
         Already have an account?{" "}
-        <a href="/login" className="text-green-500 hover:underline">
+        <a href="/signin" className="text-green-500 hover:underline">
           Log in
         </a>
       </p>

@@ -1,7 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Buttons from "../Button/Buttons";
 
 function Hero() {
+  const naviage = useNavigate();
+  const handleClick = () => {
+    console.log("clicked");
+    naviage("/signup");
+  };
   return (
     <>
       <section className="w-full  mt-[120px] mb-[90px]">
@@ -17,6 +23,7 @@ function Hero() {
           </div>
           <div className="w-auto">
             <Buttons
+              onClick={handleClick}
               primary
               rounded
               className="text-white bg-[#10B981] px-4 py-2"
