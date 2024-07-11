@@ -3,6 +3,7 @@ import { initializeApp } from 'firebase/app';
 import {
   createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, getAuth
 } from 'firebase/auth';
+import admin from 'firebase-admin';
 import serviceAccount from '../FirebaseService.json' assert { type: 'json'};
 
 dotenv.config();
@@ -18,9 +19,9 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-// initializing Firebase admin SDK -- this code is not right
-//initializeApp({
-//  credential: admin.credential.cert(serviceAccount)
-//});
+// initializing Firebase admin SDK //TODO continue from here, I need the admin to verify token
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
 
-export { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, getAuth };
+export { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, getAuth, admin };

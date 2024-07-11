@@ -1,11 +1,10 @@
 import express from "express"
-const conversationsRouter = express.Router()
-// import ConversationController
+import ConversationController from '../controllers/conversationController.js'
+import verifyToken from '../middleware/index.js'
 
-// user verifyToken middleware
-// creating a conversation
-// get conversation based on id?
-// getting conversations for a user
-// deleting a conversation?
+const conversationsRouter = express.Router()
+
+conversationsRouter.post('/', verifyToken, ConversationController.createConversation)
+conversationsRouter.get('/:userId', verifyToken, ConversationController.getConversations)
 
 export default conversationsRouter
