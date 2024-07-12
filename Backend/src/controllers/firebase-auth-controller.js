@@ -21,7 +21,7 @@ class AuthController {
         //res.send(userCredential);
       })
       .catch((error) => {
-        res.send(error);
+        res.status(401).send(error.message);
       });
   }
   loginUser(req, res, next) {
@@ -38,7 +38,7 @@ class AuthController {
         next();  // Move to the next middleware
       })
       .catch((error) => {
-        res.send(error);
+        res.status(401).send(error.message);
       });
   }
   logOutUser(req, res) {
