@@ -1,27 +1,37 @@
 import mongoose from "mongoose"
 
+const transcriptSchema = new mongoose.Schema({
+  author: {
+    type: String,
+    required: true,
+    enum: ['user', 'ai']
+  },
+  comment: {
+    type: String,
+    required: true
+  }
+})
+
 const conversationSchema = new mongoose.Schema({
-  user: {
+  userId: {
     type: String,
     required: true
   },
-  id: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true
-  },
-  title: {
+  //id: {
+  //  type: mongoose.Schema.Types.ObjectId,
+  //  required: true
+  //},
+  type: {
     type: String,
-    required: true
+    required: true,
+    enum: ['simulation', 'QAndA']
   },
   category: {
     type: String,
     required: true
   },
   transcript: {
-    type: [{
-      content: { type: String, required: true },
-      timestamp: { type: Date, required: true }
-    }],
+    type: [transcriptSchema],
     required: true
   },
   metadata: {
@@ -29,6 +39,6 @@ const conversationSchema = new mongoose.Schema({
   }
 })
 
-const User = mongoose.model('Conversation', conversationSchema);
+const Conversation = mongoose.model('Conversation', conversationSchema);
 
 export default Conversation;

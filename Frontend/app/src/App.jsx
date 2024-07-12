@@ -1,13 +1,20 @@
 import { useState } from "react";
-import Buttons from "./Component/Button/Buttons";
-import HomePage from "./Page/HomePage";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Home, Signin, Signup, Menu, Simulator } from "./Page/Index";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <HomePage />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/simulator" element={<Simulator />} />
+        </Routes>
+      </Router>
     </>
   );
 }

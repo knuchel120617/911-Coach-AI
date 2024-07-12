@@ -7,8 +7,8 @@ const UserController = {
     console.log('req.body', req.body)
     try {
       console.log('starting to create the user')
-      const email = req.email;
-      const name = req.name;
+      const email = req.body.email;
+      const name = req.body.name;
       //const { name, email } = req.body; //userId is the Firebase id
       console.log("req.email", email)
 
@@ -22,10 +22,17 @@ const UserController = {
   },
   getUser: async (req, res, next) => {
     try {
-      const { userId } = req.params;
-      const user = await UsersModel.findById(userId);
+      const email = req.body.email;
+      const token = req.accessToken;
+      console.log('email', email)
+      console.log('token', token)
+      const user = await UsersModel.findOne({ email });
+      console.log('user found:', user);
       if (!user) return next(new Error("User not found"));
-      res.status(200).json(user);
+      res.status(200).json({
+        accessToken: req.accessToken,
+        userData: user
+      });
     } catch (error) {
       next(error);
     }
