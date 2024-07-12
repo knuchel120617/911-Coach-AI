@@ -5,6 +5,6 @@ import verifyToken from '../middleware/index.js'
 const conversationsRouter = express.Router()
 
 conversationsRouter.post('/', verifyToken, ConversationController.createConversation)
-conversationsRouter.get('/:userId', verifyToken, ConversationController.getConversations)
+conversationsRouter.get('/:userId', /*verifyToken,*/ ConversationController.getConversations)
 
 export default conversationsRouter
