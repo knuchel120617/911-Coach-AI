@@ -1,4 +1,5 @@
 import { Card, CardContent, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import MenuNavBar from "./MenuNavBar";
 
 const features = [
@@ -25,6 +26,18 @@ const features = [
 ];
 
 const Menu = () => {
+  const navigate = useNavigate();
+  const handleClick = (features) => {
+    switch (features) {
+      case "Simulator":
+        navigate("/simulator");
+
+        break;
+
+      default:
+        break;
+    }
+  };
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-100">
       <MenuNavBar />
@@ -44,7 +57,11 @@ const Menu = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-screen-lg">
           {features.map((feature, index) => (
-            <Card key={index} className="w-full">
+            <Card
+              key={index}
+              className="w-full"
+              onClick={() => handleClick(feature.title)}
+            >
               <CardContent>
                 <Typography variant="h5" component="div" className="mb-2">
                   {feature.title}
