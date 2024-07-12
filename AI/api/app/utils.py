@@ -1,6 +1,8 @@
 from configparser import ConfigParser
 import cohere
 import os
+import re
+import random
 from langchain_community.embeddings import CohereEmbeddings
 from pinecone import Pinecone
 from langchain_community.vectorstores import Pinecone as Pinecone_Langchain
@@ -16,8 +18,32 @@ index_name = os.environ['PINECONE_INDEX_NAME'] = 'dispatch-ai'
 def extract_document_info(responses):
     return [f"""Document: {response["metadata"]["text"]}. Reference: {response["metadata"]["Reference"]}. Link: {response["metadata"]["Link"]}""" for response in responses['matches'] if response["score"] > 0.2]
 
-def question_answer(question):
+def format_scenario(scenario_data):
+    print("Here is the scenario data:", scenario_data)
+    scenario_pattern = r"Scenario:\s*(.*?)\n"
+    protocol_pattern = r"Protocol:\s*(.*?)\s+conversation:"
+    conversation_pattern = r"conversation:\s*(.*)"
 
+    text = scenario_data["metadata"]["text"]
+
+    scenario_match = re.search(scenario_pattern, text, re.DOTALL)
+    scenario = scenario_match.group(1).strip() if scenario_match else None
+
+    protocol_match = re.search(protocol_pattern, text, re.DOTALL)
+    protocol_steps = protocol_match.group(1).strip() if protocol_match else None
+
+    conversation_match = re.search(conversation_pattern, text, re.DOTALL)
+    conversation = conversation_match.group(1).strip() if conversation_match else None
+
+    return {
+        "Scenario": scenario,
+        "Conversation": conversation,
+        "Protocol": protocol_steps,
+        "Reference": scenario_data["metadata"]["Reference"],
+        "Link": scenario_data["metadata"]["Link"]
+    }
+
+def question_answer(question):
     co = cohere.Client(cohere_secret_key)
     embeddings = CohereEmbeddings(cohere_api_key=cohere_secret_key, user_agent="dispatch-ai")
     query = embeddings.embed_query(question)
@@ -48,3 +74,16 @@ def question_answer(question):
             return_likelihoods='NONE'
         )
     return response.generations[0].text
+
+def get_scenario(emergency_type):
+    embeddings = CohereEmbeddings(cohere_api_key=cohere_secret_key, user_agent="dispatch-ai")
+    vector = embeddings.embed_query(emergency_type)
+    pc = Pinecone(api_key=pinecone_secret_key)
+    index = pc.Index(index_name)
+    results = index.query(
+        vector=vector,
+        top_k=2,
+        include_metadata=True,
+        metadata={'Emergency Type': emergency_type, 'Type': 'Scenario'}
+    )
+    return format_scenario(results['matches'][0])

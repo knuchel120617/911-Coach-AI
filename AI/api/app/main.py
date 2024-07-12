@@ -8,10 +8,8 @@ from pydantic import BaseModel
 app = FastAPI()
 
 # Models
-class RequestModel(BaseModel):
-    message: str 
+class ScenarioModel(BaseModel):
     emergency_type: str
-    scenario: str
 
 class QuestionModel(BaseModel):
     question: str 
@@ -31,7 +29,9 @@ async def qa(request: QuestionModel):
     response = question_answer(message)
     return {"response": response}
 
-# Scenario Endpoint
-@app.post("/ingest")
-async def qa(request: RequestModel):
-    pass
+# Get scenario Endpoint
+@app.post("/scenario")
+async def scenario(request: ScenarioModel):
+    emergency_type = request.emergency_type
+    response = get_scenario(emergency_type)
+    return response
