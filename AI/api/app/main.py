@@ -32,7 +32,6 @@ async def qa(request: QuestionModel):
     return {"response": response}
 
 # Scenario Endpoint
-
 @app.post("/ingest")
 async def qa(request: RequestModel):
     pass
