@@ -3,8 +3,9 @@ import listEndpoints from "express-list-endpoints"
 import cors from "cors"
 import mongoose from "mongoose"
 import dotenv from 'dotenv';
+
+
 import usersRouter from "./routes/users.js";
-import conversationsRouter from "./routes/conversations.js"
 
 
 dotenv.config();
@@ -29,7 +30,6 @@ app.use(cors(corsOptions))
 
 
 app.use("/users", usersRouter);
-app.use("/conversations", conversationsRouter);
 
 
 // ---------------- DATABASE ------------------

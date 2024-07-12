@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home, Signin, Signup, Menu, Simulator, Conversations } from "./Page/Index";
+import { Home, Signin, Signup, Menu, Simulator, QA, Conversations } from "./Page/Index";
 import "./App.css";
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/simulator" element={<Simulator />} />
           <Route path="/conversations" element={<Conversations />} />
+          <Route path="/qa" element={<QA />} />
         </Routes>
       </Router>
     </>

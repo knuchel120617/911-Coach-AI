@@ -35,7 +35,9 @@ const Menu = () => {
       case "My conversations":
         navigate("/conversations");
         break;
-
+      case "Q&A":
+        navigate("/qa");
+        break;
       default:
         break;
     }
