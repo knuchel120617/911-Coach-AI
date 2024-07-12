@@ -14,9 +14,10 @@ const Signin = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = await login(email, password);
-
+    console.log(data.userData._id);
     localStorage.setItem("token", data.accessToken);
-    console.log(localStorage.getItem("token"));
+    localStorage.setItem("userId", data.userData._id);
+    console.log(localStorage.getItem("userId"));
 
     naviage("/menu");
   };
