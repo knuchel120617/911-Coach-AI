@@ -7,6 +7,8 @@ const auth = getAuth();
 
 class AuthController {
   registerUser(req, res, next) {
+    console.log('registerUser', req.body);
+    // get email and password from the request body
     const { email, password } = req.body;
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {

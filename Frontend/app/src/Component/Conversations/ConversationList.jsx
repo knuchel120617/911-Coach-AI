@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MenuNavBar from "../Menu/MenuNavBar";
+import Conversation from "../Conversation/Conversation";
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -7,6 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import { Typography, Avatar } from "@mui/material";
 import bin from "../../assets/Conversations/bin.png";
+import { useNavigate } from "react-router-dom";
 
 
 const testData = [
@@ -18,9 +20,20 @@ const testData = [
   { title: 'Yet Another Bold Title 6', date: '2024-07-10' },
 ];
 
+const userId = localStorage.getItem('userId');
+const accessToken = localStorage.getItem('token');
+
 const fetchData = async () => {
   try {
-    const response = await fetch('http://localhost:3000/conversations/testId'); // Replace with your actual API endpoint
+    const url = `http://localhost:3000/conversations/${userId}`
+    console.log(url);
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessToken}`
+      }
+    }); // Replace with your actual API endpoint
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -35,6 +48,7 @@ const fetchData = async () => {
 
 export default function ConversationsList() {
   const [items, setItems] = useState([]); // State to store fetched items
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -42,11 +56,23 @@ export default function ConversationsList() {
       setItems(fetchedData.map((item) => ({
         title: `${item.category} ${item.type === 'QAndA' ? 'Q&A' : 'simulation'}`,  // Combine category and type as title
         date: item.metadata.createdAtT.slice(0,10),  // Extract date from metadata dateTime
+        type: item.type,
+        category: item.category,
+        transcript: item.transcript,  
+        _id: item._id
       })));
     };
 
     getData();
   }, []);
+
+  const navigate = useNavigate();
+
+  const handleItemClick = (item) => {
+    console.log('selected item');
+    //navigate(`/conversation/${item._id}`, { state: { item } });
+    navigate(`/conversation`, { state: { item } });
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-100">
@@ -60,13 +86,13 @@ export default function ConversationsList() {
         <div className="grid grid-cols-auto md:grid-cols-2 lg:grid-cols-3 gap-20 max-w-screen-lg">
      
         {items.map((item, index) => (
-          <Grid key={index} className="flex justify-center bg-white rounded-md"> {/* Use Tailwind class for alignment */}
+          <Grid key={index} className="flex justify-center bg-white rounded-md"> 
             <ListItem disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={() => handleItemClick(item)}>
               <div className="flex flex-col"> {/*wrap in container to display title on top */}
                 <ListItemText primary={item.title} className="font-bold">
                   {item.title || null}
-                  </ListItemText>  {/* Handle items without icons */}
+                  </ListItemText>  
                 <ListItemText primary={item.date} className="text-gray-500" >
                   {item.date || null}
                   </ListItemText>
