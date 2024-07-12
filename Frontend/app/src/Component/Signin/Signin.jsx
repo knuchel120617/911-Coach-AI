@@ -2,20 +2,22 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
+import { login } from "../../Auth/Auth";
 import Buttons from "../Button/Buttons";
+import { Window } from "@mui/icons-material";
 
 const Signin = () => {
-  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const naviage = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Implement signup logic here
-    console.log("Full Name:", fullName);
-    console.log("Email:", email);
-    console.log("Password:", password);
+    const data = await login(email, password);
+
+    localStorage.setItem("token", data.accessToken);
+    console.log(localStorage.getItem("token"));
+
     naviage("/menu");
   };
 
@@ -66,7 +68,7 @@ const Signin = () => {
           type="submit"
           className="w-full bg-[#009379] hover:bg-[#4be5c9] text-white font-bold py-3 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#41a391]"
         >
-          Sign Up
+          Submit
         </Buttons>
       </form>
     </div>
