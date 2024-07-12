@@ -1,6 +1,6 @@
 // middleware that validates the token
 
-import admin from "../config/firebase";
+import { admin } from "../config/firebase.js";
 
 // token sent from the header in auth header
 const verifyToken = (req, res, next) => {

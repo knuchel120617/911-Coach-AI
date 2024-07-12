@@ -7,7 +7,7 @@ import UserController from '../controllers/userController.js'
 // import UserController
 
 usersRouter.post('/register', AuthController.registerUser, UserController.createUser);
-usersRouter.post('/login', AuthController.loginUser, UserController.getUser); //TODO get user from db
+usersRouter.post('/login', AuthController.loginUser, UserController.getUser);
 usersRouter.post('/logout', AuthController.logOutUser);
 
 export default usersRouter;
