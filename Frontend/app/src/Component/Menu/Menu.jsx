@@ -31,9 +31,10 @@ const Menu = () => {
     switch (features) {
       case "Simulator":
         navigate("/simulator");
-
         break;
-
+      case "Q&A":
+        navigate("/qa");
+        break;
       default:
         break;
     }

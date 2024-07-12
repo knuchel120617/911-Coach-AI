@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ChatMessage from "./ChatMessage";
-import GuidelineCard from "./GuidelineCard";
-import HelpModal from "./HelpModal";
+import ChatMessage from "../Simulator /ChatMessage";
+import GuidelineCard from "../Simulator /GuidelineCard";
+
 import {
   TextField,
   Button,
@@ -11,30 +11,20 @@ import {
   FormControl,
 } from "@mui/material";
 import SparklesIcon from "@mui/icons-material/Stars";
-import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 
-const Simulator = () => {
+const QA = () => {
   const [messages, setMessages] = useState([
     { text: "I am very sick......", isUser: false },
     { text: "I am very sick......", isUser: true },
   ]);
   const [input, setInput] = useState("");
   const [scenario, setScenario] = useState("");
-  const [helpModalOpen, setHelpModalOpen] = useState(false);
 
   const handleSend = () => {
     if (input.trim()) {
       setMessages([...messages, { text: input, isUser: true }]);
       setInput("");
     }
-  };
-
-  const handleHelpClick = () => {
-    setHelpModalOpen(true);
-  };
-
-  const handleHelpClose = () => {
-    setHelpModalOpen(false);
   };
 
   return (
@@ -99,24 +89,11 @@ const Simulator = () => {
             borderRadius: "9999px", // Ensures the button is fully rounded
           }}
         >
-          Submit
+          ASK
         </Button>
-
-        <div className="flex items-center ml-[130px]">
-          <QuestionMarkIcon
-            style={{
-              fontSize: "30px", // Reduced size to fit better
-              color: "#3f51b5", // Matched button color
-              cursor: "pointer",
-            }}
-            onClick={handleHelpClick}
-          />
-        </div>
       </div>
-
-      <HelpModal open={helpModalOpen} handleClose={handleHelpClose} />
     </div>
   );
 };
 
-export default Simulator;
+export default QA;
