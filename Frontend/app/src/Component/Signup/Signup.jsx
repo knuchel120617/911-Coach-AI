@@ -3,21 +3,26 @@ import { useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
+import { register } from "../../Auth/Auth";
 import Buttons from "../Button/Buttons";
 
 const Signup = () => {
-  const [fullName, setFullName] = useState("");
+  const [name, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    navigate("/menu");
-    // Implement signup logic here
-    console.log("Full Name:", fullName);
-    console.log("Email:", email);
-    console.log("Password:", password);
+  const handleSubmit = async (event) => {
+    try {
+      event.preventDefault();
+      const data = await register(email, password, name);
+      console.log(data);
+      navigate("/signin");
+    } catch (error) {
+      console.log;
+      setError(error);
+    }
   };
 
   return (
@@ -39,7 +44,7 @@ const Signup = () => {
             <input
               id="fullName"
               type="text"
-              value={fullName}
+              value={name}
               onChange={(event) => setFullName(event.target.value)}
               className="w-full lg:w-[600px] rounded-full pl-10 border border-gray-300 p-3 focus:outline-none focus:ring-1 focus:ring-blue-500"
               required
