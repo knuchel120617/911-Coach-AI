@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ChatMessage from "../Simulator /ChatMessage";
-import GuidelineCard from "../Simulator /GuidelineCard";
+import ChatMessage from "../Simulator/ChatMessage";
+import GuidelineCard from "../Simulator/GuidelineCard";
 
 import {
   TextField,
