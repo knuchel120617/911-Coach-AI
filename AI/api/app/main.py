@@ -7,11 +7,14 @@ from pydantic import BaseModel
 # Create the FastAPI app
 app = FastAPI()
 
-# Request Model
+# Models
 class RequestModel(BaseModel):
     message: str 
     emergency_type: str
     scenario: str
+
+class QuestionModel(BaseModel):
+    question: str 
 
 # Define the root route
 @app.get("/")
@@ -23,8 +26,8 @@ async def root():
 
 # Question and Answer endpoint
 @app.post("/qa")
-async def qa(request: RequestModel):
-    message = request.message
+async def qa(request: QuestionModel):
+    message = request.question
     response = question_answer(message)
     return {"response": response}
 
