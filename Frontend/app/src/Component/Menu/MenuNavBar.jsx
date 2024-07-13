@@ -11,10 +11,12 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Buttons from "../Button/Buttons";
+import { useNavigate } from "react-router-dom";
 
 const MenuNavBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
+  const navigate = useNavigate();
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -22,6 +24,37 @@ const MenuNavBar = () => {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleNavigate = (path) => {
+    console.log('clicked handleNavigate');
+    handleMenuClose();
+    navigate(path);
+  };
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/users/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+
+      if (response.ok) {
+        // Clear local storage or any other storage mechanism
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+
+        // Navigate to the login page or home page
+        navigate('/signin');
+      } else {
+        console.error('Logout failed:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
   };
 
   const logoPath = "/src/assets/logo/logo.svg";
@@ -76,28 +109,28 @@ const MenuNavBar = () => {
               },
             }}
           >
-            <MenuItem onClick={handleMenuClose}>Simulator</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Q&A</MenuItem>
+            <MenuItem onClick={() => handleNavigate('/simulator')}>Simulator</MenuItem>
+            <MenuItem onClick={() => handleNavigate('/qa')}>Q&A</MenuItem>
             <MenuItem onClick={handleMenuClose}>AI Feedback</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Conversations</MenuItem>
+            <MenuItem onClick={() => handleNavigate('/conversations')}>Conversations</MenuItem>
             <div className="flex items-center justify-center mt-4">
-            <IconButton>{<LogoutIcon/>}</IconButton>
+            <IconButton onClick={handleLogout}>{<LogoutIcon/>}</IconButton>
             </div>
           </Menu>
           <div className="hidden sm:flex items-center space-x-4">
-            <a className="cursor-pointer text-sm px-3 font-medium" style={{ color: '#009379' }}>
+            <a onClick={() => handleNavigate('/simulator')} className="cursor-pointer text-sm px-3 font-medium" style={{ color: '#009379' }}>
               Simulator
             </a>
-            <a className="cursor-pointer text-sm px-3 font-medium" style={{ color: '#009379' }}>
+            <a onClick={() => handleNavigate('/qa')}className="cursor-pointer text-sm px-3 font-medium" style={{ color: '#009379' }}>
               Q&A
             </a>
             <a className="cursor-pointer text-sm px-3 font-medium" style={{ color: '#009379' }}>
               AI Feedback
             </a>
-            <a className="cursor-pointer text-sm px-3 font-medium" style={{ color: '#009379' }}>
+            <a onClick={() => handleNavigate('/conversations')}className="cursor-pointer text-sm px-3 font-medium" style={{ color: '#009379' }}>
               Conversations
             </a>
-            <IconButton>{<LogoutIcon/>}</IconButton>
+            <IconButton onClick={handleLogout}>{<LogoutIcon/>}</IconButton>
           </div>
         </div>
       </Toolbar>
