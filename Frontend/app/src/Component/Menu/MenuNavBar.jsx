@@ -27,9 +27,14 @@ const MenuNavBar = () => {
   const logoPath = "/src/assets/logo/logo.svg";
   return (
     <AppBar
-      className="px-[40px]"
+      sx={{
+        backgroundColor: '#F8F9FF', 
+        zIndex: 1100,
+        paddingX: '40px',
+      }}
+      className="px-[40px] pt-[40px] bg-[#009379]"
       id="nav-bar-home"
-      position="static"
+      position="sticky"
       color="transparent"
       elevation={0}
     >
