@@ -45,6 +45,24 @@ def format_scenario(scenario_data):
         "Link": scenario_data["metadata"]["Link"]
     }
 
+def format_scenario_2(scenario_data):
+    scenario_pattern = r"Scenario:\s*(.*?)\n"
+    protocol_pattern = r"Protocol:\s*(.*?)\s+conversation:"
+    conversation_pattern = r"conversation:\s*(.*)"
+
+    text = scenario_data["metadata"]["text"]
+
+    scenario_match = re.search(scenario_pattern, text, re.DOTALL)
+    scenario = scenario_match.group(1).strip() if scenario_match else None
+
+    conversation_match = re.search(conversation_pattern, text, re.DOTALL)
+    conversation = conversation_match.group(1).strip() if conversation_match else None
+
+    return {
+        "Scenario": scenario,
+        "Conversation": conversation
+    }
+
 def question_answer(question):
     co = cohere.Client(cohere_secret_key)
     embeddings = CohereEmbeddings(cohere_api_key=cohere_secret_key, user_agent="dispatch-ai")
@@ -88,7 +106,7 @@ def get_scenario(emergency_type):
         include_metadata=True,
         metadata={'Emergency Type': emergency_type, 'Type': 'Scenario'}
     )
-    return format_scenario(results['matches'][0])
+    return format_scenario_2(results['matches'][0])
 
 def simulate_chat(chat_history, scenario, conversation):
     client = AI21Client(api_key= ai21_secret_key)
