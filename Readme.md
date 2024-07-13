@@ -35,7 +35,7 @@ TODO --> explain our idea, what are we trying to built
 
 TODO --> describe how our solution was built - architecture diagram
 
-
+[![diagram](assets/Medihacks.png)]
 
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
@@ -73,7 +73,9 @@ Access the Application: Open a web browser and navigate to http://localhost:3000
 - [React](https://www.react.dev/) - Frontend Framework
 - [NodeJS](https://nodejs.org/) - JavaScript runtime environment
 - [MongoDB](https://www.mongodb.com/) - NoSQL database
-TODO --> add AI tech
+- [FastAPI](https://fastapi.tiangolo.com/) - A modern, fast (high-performance), web framework for building APIs
+- [Pinecone](www.pinecone.io) - Vector database
+- [Cohere](https://cohere.com) - Enterprise AI Platform
 
 ## ✍️ Authors <a name = "authors"></a>
 - [@MeriemTerki](https://github.com/MeriemTerki) 
