@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import ChatMessage from "../Simulator/ChatMessage";
+import React, { useState, useEffect } from "react";
+import QAMessage from "./QAmessage";
 import GuidelineCard from "../Simulator/GuidelineCard";
 
 import {
@@ -14,15 +14,28 @@ import SparklesIcon from "@mui/icons-material/Stars";
 
 const QA = () => {
   const [messages, setMessages] = useState([
-    { text: "I am very sick......", isUser: false },
-    { text: "I am very sick......", isUser: true },
+    { text: "", isUser: true },
+    { text: "", isUser: false },
   ]);
   const [input, setInput] = useState("");
-  const [scenario, setScenario] = useState("");
+
+    // Log messages on component mount (optional)
+    useEffect(() => {
+      console.log('Current messages:', messages);
+    }, [messages]); // Dependency array ensures logging only occurs on message changes
+
 
   const handleSend = async () => {
     if (input.trim()) {
       const message = { question: input, isUser: true };
+
+      setMessages([
+        { text: input, isUser: true } // empty the array and start a new one
+      ]);
+      // Clear input field after sending
+      setInput('');
+
+      
   
       try {
         // Replace with your actual URL endpoint
@@ -31,10 +44,20 @@ const QA = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(message),
         });
+
   
         if (response.ok) {
+          const data = await response.json();
+          const responseMessage = data.response;
+          console.log('responseMessage', responseMessage);
           console.log('Message sent successfully!');
           setInput(""); // Clear input field even on successful send
+          setMessages(prevMessages => [
+            ...prevMessages,
+            { text: data.response, isUser: false }
+          ]);
+
+          console.log('responseMessage:', data.response);
         } else {
           console.error('Error sending message:', response.statusText);
           // Handle error (e.g., display an error message to the user)
@@ -48,56 +71,28 @@ const QA = () => {
 
   return (
     <div className="p-6 flex flex-col items-center">
-      {/*<FormControl fullWidth variant="outlined" className="mb-4 max-w-2xl">
-        <InputLabel>Scenario definition</InputLabel>
-        <Select
-          value={scenario}
-          onChange={(e) => setScenario(e.target.value)}
-          label="Scenario definition"
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value="scenario1">Cardiac Arrest</MenuItem>
-          <MenuItem value="scenario2">Choking</MenuItem>
-          <MenuItem value="scenario3">Drowning</MenuItem>
-          <MenuItem value="scenario1">Electrocution</MenuItem>
-          <MenuItem value="scenario2">Childbirth</MenuItem>
-          <MenuItem value="scenario3">Pregnancy</MenuItem>
-          <MenuItem value="scenario1">Unconscious</MenuItem>
-          <MenuItem value="scenario2">Bleeding</MenuItem>
-          <MenuItem value="scenario3">Injury</MenuItem>
-          <MenuItem value="scenario1">Headache</MenuItem>
-          <MenuItem value="scenario2">Health Care Provider Requests EMS</MenuItem>
-          <MenuItem value="scenario3">Home Medical Equipment Failure</MenuItem>
-        </Select>
-      </FormControl>*/}
-
+     
       <GuidelineCard
-        guidelines="Automation: AI can automate repetitive and mundane tasks, saving time and effort for humans. It can handle large volumes of data, perform complex calculations, and execute tasks with precision and consistency. This automation leads to increased productivity and efficiency in various industries."
+        guidelines="Utilize our Q&A functionality to ask medical questions sourced from our AI-powered database. All responses are derived from current protocols and industry best practices, with additional links provided for further reference."
         className="mb-4 shadow-lg"
       />
 
       <div className="mb-4 w-full max-w-4xl">
         {messages.map((message, index) => (
-          <ChatMessage
+          <QAMessage
             key={index}
-            message={message.question}
+            message={message.text}
             isUser={message.isUser}
           />
         ))}
       </div>
 
-      {/*<div className="flex items-center mb-4">
-        <SparklesIcon className="mr-2 text-green-500" />
-        <p className="text-center">End call and generate feedback</p>
-      </div>*/}
 
       <div className="flex w-full max-w-4xl mb-4">
         <TextField
           fullWidth
           variant="outlined"
-          label="Send an instruction, question to the caller"
+          label="Ask a question from our evidence-based knowledge base Q&A"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           className="rounded-lg shadow-md"
