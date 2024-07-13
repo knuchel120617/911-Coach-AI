@@ -1,4 +1,5 @@
 import { Card, CardContent, Typography } from "@mui/material";
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from "react-router-dom";
 import MenuNavBar from "./MenuNavBar";
 
@@ -43,7 +44,7 @@ const Menu = () => {
     }
   };
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gray-100">
+    <div className="min-h-screen flex flex-col items-center bg-[#F8F9FF]">
       <MenuNavBar />
 
       <main className="flex flex-col items-center justify-center flex-grow">
@@ -81,5 +82,6 @@ const Menu = () => {
     </div>
   );
 };
+
 
 export default Menu;
