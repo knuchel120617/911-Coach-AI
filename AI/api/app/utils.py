@@ -110,7 +110,7 @@ def get_scenario(emergency_type):
 
 def simulate_chat(chat_history, scenario, conversation):
     client = AI21Client(api_key= ai21_secret_key)
-    system = f"You are a person in a dying need for help and you are calling a dispatcher for a medical emergency. You are in this scenario: {scenario}. Respond to one question at a time. You should respond like this: {conversation}"
+    system = f"You are a person in a dying need for help and you are calling a dispatcher for a medical emergency. You are going through this scenario: {scenario}. Respond to the dispatcher (user) questions with one at a time one. You should get information about your situation inspired from this conversation: {conversation}. Mention one information at a time and don't add any unnecessary details."
     conversation = []
 
     for msg in chat_history:
