@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException, BackgroundTasks
 from utils import *
 from pydantic import BaseModel
+from typing import List
 
 
 '''The API '''
@@ -14,6 +15,15 @@ class ScenarioModel(BaseModel):
 class QuestionModel(BaseModel):
     question: str 
 
+class MessageModel(BaseModel):
+    author: str
+    comment: str
+
+class ConversationModel(BaseModel):
+    chat_history: List[MessageModel]
+    scenario: str
+    conversation: str
+
 # Define the root route
 @app.get("/")
 async def root():
@@ -22,7 +32,7 @@ async def root():
     """
     return {"message": "Welcome to the smart dispatch API!"}
 
-# Question and Answer endpoint
+# Question & Answer Endpoint
 @app.post("/qa")
 async def qa(request: QuestionModel):
     message = request.question
@@ -35,3 +45,18 @@ async def scenario(request: ScenarioModel):
     emergency_type = request.emergency_type
     response = get_scenario(emergency_type)
     return response
+
+# Simulation Endpoint
+@app.post("/simulation")
+async def simulate(request: ConversationModel):
+    chat_history = request.chat_history
+    scenario = request.scenario
+    conversation = request.conversation
+    print(chat_history, scenario, conversation)
+    response = simulate_chat(chat_history, scenario, conversation)
+    return {"AI response": response}
+
+# Feedback Endpoint
+@app.post("/feedback")
+async def scenario(request: ScenarioModel):
+    pass

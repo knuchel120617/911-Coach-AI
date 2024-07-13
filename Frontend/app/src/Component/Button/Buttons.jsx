@@ -4,18 +4,7 @@ import classNames from "classnames";
 function Buttons({ children, primary, rounded, alternate, ...res }) {
   const classes = classNames(
     res.className,
-    " border cursor-pointer",
-    {
-      "border-[1px] bg-[#19B7CC] text-center w-[221px] h-[60px] text-black px-[50px] py-[16px] border-none  hover:bg-[#6ad3e0] tracking-[2px]":
-        primary,
-      "rounded-full": rounded,
-    },
-
-    {
-      "border-[1px] bg-[#fff] text-center w-[221px] h-[60px] text-[#19B7CC] px-[50px] py-[16px] border-[#19B7CC]  hover:bg-[#dadada] tracking-[2px]":
-        alternate,
-      "rounded-full": rounded,
-    },
+    "border cursor-pointer"
   );
 
   return (

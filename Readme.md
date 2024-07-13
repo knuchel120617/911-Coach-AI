@@ -36,8 +36,6 @@ TODO --> explain our idea, what are we trying to built
 TODO --> describe how our solution was built - architecture diagram
 
 
-
-
 ## 🏁 Getting Started <a name = "getting_started"></a>
 These instructions will get you a copy of the project up and running on your local machine for development 
 and testing purposes. 

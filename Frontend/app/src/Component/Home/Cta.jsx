@@ -8,9 +8,9 @@ function Cta() {
     naviage("/signup");
   };
   return (
-    <section className="mb-[120px]">
-      <div className="container mx-auto text-center bg-[#f1fbf9] py-16">
-        <h2 className="text-xl mx-[15px] lg:text-3xl font-bold mb-4">
+    <section className="mb-[20px] mx-[40px]">
+      <div className="container mx-auto text-center bg-[#F8D57E] py-16">
+        <h2 className="text-xl mx-[15px] lg:text-3xl font-bold mb-4" style={{ color: '#333333' }}>
           Experience the best AI-powered tool in EMD
         </h2>
         <p className="text-lg mb-6 mx-[15px]">
@@ -21,7 +21,7 @@ function Cta() {
             onClick={handleClick}
             primary
             rounded
-            className="text-white bg-[#10B981] px-4 py-2"
+            className="text-white bg-[#009379] px-6 py-3 border-none rounded-[10px] text-sm" 
             style={{ minWidth: "auto", width: "auto" }}
           >
             Get Started
