@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Phone, Email, Person } from "@mui/icons-material"; // Importing Material-UI icons
+import { Phone, Email } from "@mui/icons-material"; // Importing Material-UI icons
+import PersonIcon from '@mui/icons-material/Person';
 import { TextField } from "@mui/material"; // Importing Material-UI components
 import Buttons from "../Button/Buttons";
 
@@ -20,7 +21,7 @@ function ContactUs() {
 
   return (
     <section className="px-[40px]">
-      <div className="container bg-[#f1fbf9] py-16 px-4">
+      <div className="container bg-[#fff] py-16 px-20 mb-10">
         <div className="mb-[60px] text-center">
           <h2 className="text-3xl font-bold mb-4 text-left" style={{ color: '#333333' }}>Let's get in touch!</h2>
           <p className="text-gray-700 mb-6 text-base text-left">
@@ -59,7 +60,7 @@ function ContactUs() {
                 maxWidth: 300, // Adjust the maximum width as per your design
               }}
               InputProps={{
-                startAdornment: <Phone className="text-gray-600" />,
+                startAdornment: <PersonIcon className="text-[#009379]" />,
               }}
             />
             <TextField
@@ -75,7 +76,7 @@ function ContactUs() {
                 maxWidth: 300, // Adjust the maximum width as per your design
               }}
               InputProps={{
-                startAdornment: <Email className="text-gray-600" />,
+                startAdornment: <Email className="text-[#009379]" />,
               }}
             />
             <Buttons
@@ -83,8 +84,8 @@ function ContactUs() {
               rounded
               type="submit"
               variant="contained"
-              color="primary"
-              className="text-white bg-[#10B981]"
+              className="text-white bg-[#009379] px-6 py-3 border-none rounded-[10px] text-sm" 
+              style={{ minWidth: "auto", width: "auto" }}
             >
               Submit
             </Buttons>

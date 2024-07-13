@@ -27,58 +27,58 @@ const Signup = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold mb-4">Sign Up</h1>
+      <h1 className="text-3xl font-bold mb-4" style={{ color: '#333333' }}>Sign Up</h1>
       <p className="text-sm text-gray-600 mb-4">
         Already have an account?{" "}
-        <a href="/signin" className="text-green-500 hover:underline">
+        <a href="/signin" className="text-[#009379] hover:underline">
           Log in
         </a>
       </p>
       <form onSubmit={handleSubmit} className="w-full max-w-lg space-y-4">
         <div className="flex flex-col">
-          <label htmlFor="fullName" className="text-sm font-medium mb-2">
+          <label htmlFor="fullName" className="text-sm font-medium mb-2" style={{ color: '#333333' }}>
             Full Name
           </label>
           <div className="relative">
-            <PersonIcon className="absolute left-3 top-3 text-[#9cdfd3]" />
+            <PersonIcon className="absolute left-3 top-3 text-[#009379]" />
             <input
               id="fullName"
               type="text"
               value={name}
               onChange={(event) => setFullName(event.target.value)}
-              className="w-full lg:w-[600px] rounded-full pl-10 border border-gray-300 p-3 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-full lg:w-[600px] rounded-xl pl-10 border border-gray-300 p-3 focus:outline-none focus:ring-1 focus:ring-blue-500"
               required
             />
           </div>
         </div>
         <div className="flex flex-col">
-          <label htmlFor="email" className="text-sm font-medium mb-2">
+          <label htmlFor="email" className="text-sm font-medium mb-2" style={{ color: '#333333' }}>
             Email
           </label>
           <div className="relative">
-            <EmailIcon className="absolute left-3 top-3 text-[#9cdfd3]" />
+            <EmailIcon className="absolute left-3 top-3 text-[#009379]" />
             <input
               id="email"
               type="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="w-full lg:w-[600px] rounded-full pl-10 border border-gray-300 p-3 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-full lg:w-[600px] rounded-xl pl-10 border border-gray-300 p-3 focus:outline-none focus:ring-1 focus:ring-blue-500"
               required
             />
           </div>
         </div>
         <div className="flex flex-col">
-          <label htmlFor="password" className="text-sm font-medium mb-2">
+          <label htmlFor="password" className="text-sm font-medium mb-2" style={{ color: '#333333' }}>
             Password
           </label>
           <div className="relative">
-            <LockIcon className="absolute left-3 top-3 text-[#9cdfd3]" />
+            <LockIcon className="absolute left-3 top-3 text-[#009379]" />
             <input
               id="password"
               type="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className="w-full lg:w-[600px] rounded-full pl-10 border border-gray-300 p-3 focus:outline-none focus:ring-1 focus:ring-[#9cdfd3]"
+              className="w-full lg:w-[600px] rounded-xl pl-10 border border-gray-300 p-3 focus:outline-none focus:ring-1 focus:ring-[#9cdfd3]"
               required
             />
           </div>
@@ -86,7 +86,8 @@ const Signup = () => {
         <Buttons
           primary
           type="submit"
-          className="w-full bg-[#009379] hover:bg-[#4be5c9] text-white font-bold py-3 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#41a391]"
+          className="text-white bg-[#009379] px-6 py-3 border-none rounded-[10px] text-sm" 
+          style={{ minWidth: "auto", width: "auto" }}
         >
           Sign Up
         </Buttons>

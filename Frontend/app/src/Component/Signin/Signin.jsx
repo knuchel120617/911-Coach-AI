@@ -27,7 +27,7 @@ const Signin = () => {
       <h1 className="text-3xl font-bold mb-4">Log into your account</h1>
       <p className="text-sm text-gray-600 mb-4">
         You don’t have an account?{" "}
-        <a href="/signup" className="text-green-500 hover:underline">
+        <a href="/signup" className="text-[#009379] hover:underline">
           Sign up
         </a>
       </p>
