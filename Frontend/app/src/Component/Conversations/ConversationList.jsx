@@ -16,7 +16,7 @@ const accessToken = localStorage.getItem('token');
 
 const fetchData = async () => {
   try {
-    const url = `http://localhost:3000/conversations/${userId}`
+    const url = `https://medihacks-ka2dwt1hz-marikas-projects-22112c00.vercel.app/conversations/${userId}`
     console.log(url);
     const response = await fetch(url, {
       method: 'GET',
