@@ -2,12 +2,21 @@ from fastapi import FastAPI, HTTPException, BackgroundTasks
 from utils import *
 from pydantic import BaseModel
 from typing import List
+from fastapi.middleware.cors import CORSMiddleware
 
 
 '''The API '''
 # Create the FastAPI app
 app = FastAPI()
 
+origins = ['*']
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # Models
 class ScenarioModel(BaseModel):
     emergency_type: str
