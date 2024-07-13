@@ -49,9 +49,18 @@ const Simulator = () => {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value="scenario1">Scenario 1</MenuItem>
-          <MenuItem value="scenario2">Scenario 2</MenuItem>
-          <MenuItem value="scenario3">Scenario 3</MenuItem>
+          <MenuItem value="scenario1">Cardiac Arrest</MenuItem>
+          <MenuItem value="scenario2">Choking</MenuItem>
+          <MenuItem value="scenario3">Drowning</MenuItem>
+          <MenuItem value="scenario4">Electrocution</MenuItem>
+          <MenuItem value="scenario5">Pregnancy</MenuItem>
+          <MenuItem value="scenario6">Unconscious</MenuItem>
+          <MenuItem value="scenario7">Bleeding</MenuItem>
+          <MenuItem value="scenario8">Injury</MenuItem>
+          <MenuItem value="scenario9">Headache</MenuItem>
+          <MenuItem value="scenario10">Health Care Provider Requests EMS</MenuItem>
+          <MenuItem value="scenario11">Home Medical Equipment Failure</MenuItem>
+          <MenuItem value="scenario12">Childbirth</MenuItem>
         </Select>
       </FormControl>
 

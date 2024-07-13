@@ -20,16 +20,35 @@ const QA = () => {
   const [input, setInput] = useState("");
   const [scenario, setScenario] = useState("");
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (input.trim()) {
-      setMessages([...messages, { text: input, isUser: true }]);
-      setInput("");
+      const message = { question: input, isUser: true };
+  
+      try {
+        // Replace with your actual URL endpoint
+        const response = await fetch('https://em-buddy.onrender.com/qa', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(message),
+        });
+  
+        if (response.ok) {
+          console.log('Message sent successfully!');
+          setInput(""); // Clear input field even on successful send
+        } else {
+          console.error('Error sending message:', response.statusText);
+          // Handle error (e.g., display an error message to the user)
+        }
+      } catch (error) {
+        console.error('Error sending message:', error);
+        // Handle error (e.g., display an error message to the user)
+      }
     }
   };
 
   return (
     <div className="p-6 flex flex-col items-center">
-      <FormControl fullWidth variant="outlined" className="mb-4 max-w-2xl">
+      {/*<FormControl fullWidth variant="outlined" className="mb-4 max-w-2xl">
         <InputLabel>Scenario definition</InputLabel>
         <Select
           value={scenario}
@@ -39,11 +58,20 @@ const QA = () => {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value="scenario1">Scenario 1</MenuItem>
-          <MenuItem value="scenario2">Scenario 2</MenuItem>
-          <MenuItem value="scenario3">Scenario 3</MenuItem>
+          <MenuItem value="scenario1">Cardiac Arrest</MenuItem>
+          <MenuItem value="scenario2">Choking</MenuItem>
+          <MenuItem value="scenario3">Drowning</MenuItem>
+          <MenuItem value="scenario1">Electrocution</MenuItem>
+          <MenuItem value="scenario2">Childbirth</MenuItem>
+          <MenuItem value="scenario3">Pregnancy</MenuItem>
+          <MenuItem value="scenario1">Unconscious</MenuItem>
+          <MenuItem value="scenario2">Bleeding</MenuItem>
+          <MenuItem value="scenario3">Injury</MenuItem>
+          <MenuItem value="scenario1">Headache</MenuItem>
+          <MenuItem value="scenario2">Health Care Provider Requests EMS</MenuItem>
+          <MenuItem value="scenario3">Home Medical Equipment Failure</MenuItem>
         </Select>
-      </FormControl>
+      </FormControl>*/}
 
       <GuidelineCard
         guidelines="Automation: AI can automate repetitive and mundane tasks, saving time and effort for humans. It can handle large volumes of data, perform complex calculations, and execute tasks with precision and consistency. This automation leads to increased productivity and efficiency in various industries."
@@ -54,16 +82,16 @@ const QA = () => {
         {messages.map((message, index) => (
           <ChatMessage
             key={index}
-            message={message.text}
+            message={message.question}
             isUser={message.isUser}
           />
         ))}
       </div>
 
-      <div className="flex items-center mb-4">
+      {/*<div className="flex items-center mb-4">
         <SparklesIcon className="mr-2 text-green-500" />
         <p className="text-center">End call and generate feedback</p>
-      </div>
+      </div>*/}
 
       <div className="flex w-full max-w-4xl mb-4">
         <TextField
