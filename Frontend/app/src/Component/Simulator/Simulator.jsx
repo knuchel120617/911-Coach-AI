@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import SparklesIcon from "@mui/icons-material/Stars";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
+import Buttons from "../Button/Buttons";
 
 const Simulator = () => {
   const [messages, setMessages] = useState([
@@ -40,7 +41,18 @@ const Simulator = () => {
   return (
     <div className="p-6 flex flex-col items-center">
       <FormControl fullWidth variant="outlined" className="mb-4 max-w-2xl">
-        <InputLabel>Scenario definition</InputLabel>
+      <InputLabel
+        sx={{
+          fontFamily: 'Poppins, sans-serif', // Custom font
+          color: '#333333', // Custom text color
+          borderRadius: '8px', // Custom border radius
+          padding: '0 8px' // Optional: Adjust padding to match border radius
+        }}
+        
+        className = "text-sm"
+      >
+        Scenario definition
+      </InputLabel>
         <Select
           value={scenario}
           onChange={(e) => setScenario(e.target.value)}
@@ -66,7 +78,7 @@ const Simulator = () => {
 
       <GuidelineCard
         guidelines="Automation: AI can automate repetitive and mundane tasks, saving time and effort for humans. It can handle large volumes of data, perform complex calculations, and execute tasks with precision and consistency. This automation leads to increased productivity and efficiency in various industries."
-        className="mb-4 shadow-lg"
+        className="mb-4"
       />
 
       <div className="mb-4 w-full max-w-4xl">
@@ -78,44 +90,45 @@ const Simulator = () => {
           />
         ))}
       </div>
-
-      <div className="flex items-center mb-4">
-        <SparklesIcon className="mr-2 text-green-500" />
-        <p className="text-center">End call and generate feedback</p>
-      </div>
-
-      <div className="flex w-full max-w-4xl mb-4">
+      <div style={{
+        backgroundColor: '#F8F9FF', 
+        position: 'sticky',
+        bottom: 0,
+        width: '100%',
+        zIndex: 1000, // Ensure it stays on top
+      }} className="w-full flex flex-col">
+        <div className="flex flex-row justify-center items-center mb-4">
+          <SparklesIcon className="flex justify-center items-center mr-3 text-[#009379]" />
+          <p className="text-center">End call and generate feedback</p>
+        </div>
+        <div className="flex justify-center items-center flex-row w-full mb-4">
         <TextField
           fullWidth
           variant="outlined"
-          label="Send an instruction, question to the caller"
+          label="Send an instruction or a question to the caller"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="rounded-lg shadow-md"
+          className="flex rounded-lg"
           InputProps={{ className: "rounded-lg" }}
           style={{ marginRight: "10px" }}
         />
 
-        <Button
-          variant="contained"
-          color="primary"
+        <Buttons
           onClick={handleSend}
-          className="py-2 px-4 shadow-md"
-          style={{
-            marginLeft: "30px",
-            padding: "5px 80px", // Adjusted padding for the button size
-            fontSize: "14px", // Adjusted font size if needed
-            borderRadius: "9999px", // Ensures the button is fully rounded
-          }}
+          primary
+          type="submit"
+          className="text-white bg-[#009379] px-10 py-5 border-none rounded-[10px] text-sm" 
+          style={{ minWidth: "auto", width: "auto", marginLeft: "10px" }}
         >
-          Submit
-        </Button>
+          Send
+        </Buttons>
+
 
         <div className="flex items-center ml-[130px]">
           <QuestionMarkIcon
             style={{
               fontSize: "30px", // Reduced size to fit better
-              color: "#3f51b5", // Matched button color
+              color: "#009379", // Matched button color
               cursor: "pointer",
             }}
             onClick={handleHelpClick}
@@ -125,6 +138,9 @@ const Simulator = () => {
 
       <HelpModal open={helpModalOpen} handleClose={handleHelpClose} />
     </div>
+      </div>
+
+
   );
 };
 
