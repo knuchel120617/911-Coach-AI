@@ -30,9 +30,10 @@ const NavBar = () => {
   const logoPath = "/src/assets/logo/logo.svg";
 
   return (
-    <AppBar position="static" color="transparent" elevation={0}>
+    <AppBar className="px-[40px]" id="nav-bar-home" position="static" color="transparent" elevation={0}>
       <Toolbar className="px-4 flex justify-between items-center mt-2">
       <img src={logoPath} alt="Logo" width="300px" height="150px"/>
+
         <div className="flex items-center space-x-4">
           <IconButton
             onClick={handleMenuToggle}
@@ -66,35 +67,35 @@ const NavBar = () => {
             <MenuItem onClick={handleCloseMenu}>About</MenuItem>
             <MenuItem onClick={handleCloseMenu}>FAQ</MenuItem>
             <MenuItem onClick={handleCloseMenu}>Contact Us</MenuItem>
-            <div className="flex items-center justify-center mt-4">
+            <div  className="flex items-center justify-center mt-4">
               <Buttons
                 primary
                 rounded
-                className="text-white bg-[#10B981] px-3 py-2 text-sm" // Adjust button size
+                className="text-white bg-[#009379] px-6 py-3 border-none rounded-[10px] text-sm" 
                 onClick={handleCloseMenu}
               >
-                Let's Get Started
+                Get Started
               </Buttons>
             </div>
           </Menu>
           <div className="hidden sm:flex items-center space-x-4">
-            <Typography variant="body1" className="cursor-pointer">
+            <a className="cursor-pointer text-sm px-3 font-medium" style={{ color: '#009379' }}>
               About
-            </Typography>
-            <Typography variant="body1" className="cursor-pointer">
+            </a>
+            <a className="cursor-pointer text-sm px-3 font-medium" style={{ color: '#009379' }}>
               FAQ
-            </Typography>
-            <Typography variant="body1" className="cursor-pointer">
+            </a>
+            <a className="cursor-pointer text-sm px-3 font-medium" style={{ color: '#009379' }}>
               Contact Us
-            </Typography>
+            </a>
             <Buttons
               onClick={handleClick}
               primary
               rounded
-              className="text-white bg-[#10B981] px-4 py-2"
+              className="text-white bg-[#009379] px-6 py-3 border-none rounded-[10px] text-sm" // Adjust button size
               style={{ minWidth: "auto" }}
             >
-              Let's Get Started
+              Get Started
             </Buttons>
           </div>
         </div>

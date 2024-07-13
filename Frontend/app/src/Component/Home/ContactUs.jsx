@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Phone, Email } from "@mui/icons-material"; // Importing Material-UI icons
+import { Phone, Email, Person } from "@mui/icons-material"; // Importing Material-UI icons
 import { TextField } from "@mui/material"; // Importing Material-UI components
 import Buttons from "../Button/Buttons";
 
@@ -19,24 +19,24 @@ function ContactUs() {
   };
 
   return (
-    <section className="px-4 py-8">
-      <div className="container mx-auto bg-[#f1fbf9] py-16 px-4">
+    <section className="px-[40px]">
+      <div className="container bg-[#f1fbf9] py-16 px-4">
         <div className="mb-[60px] text-center">
-          <h2 className="text-3xl font-bold mb-4">Let's get in touch!</h2>
-          <p className="text-gray-700 mb-6 text-base">
+          <h2 className="text-3xl font-bold mb-4 text-left" style={{ color: '#333333' }}>Let's get in touch!</h2>
+          <p className="text-gray-700 mb-6 text-base text-left">
             Our team is here to help. Contact us for quick and friendly support.
           </p>
         </div>
-        <div className="flex flex-col lg:flex-row lg:items-start space-y-4 lg:space-y-0 lg:space-x-8 justify-center items-center">
+        <div className="flex flex-col lg:flex-row lg:items-start space-y-4 lg:space-y-0 lg:space-x-8 justify-start items-start">
           {/* Contact Information Section */}
-          <div className="lg:w-1/3 text-center">
-            <div className="flex flex-col items-center space-y-2">
+          <div className="flex flex-col justify-start lg:w-1/2 text-center">
+            <div className="flex flex-col items-start space-y-2">
               <div className="flex items-center space-x-2">
-                <Phone className="text-gray-600" />
+                <Phone className="text-[#009379]" />
                 <span>+012 345 6789</span>
               </div>
               <div className="flex items-center space-x-2 gap-3">
-                <Email className="text-gray-600 " />
+                <Email className="text-[#009379]" />
                 <span>hello@embuddy.com</span>
               </div>
             </div>

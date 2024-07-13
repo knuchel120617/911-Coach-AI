@@ -16,6 +16,9 @@ function Faq() {
 
   return (
     <section>
+      <h2 className="text-[20px] text-center mb-[20px] font-bold leading-relaxed tracking-wide lg:text-[40px] mb-[20px]" style={{ color: '#333333' }}>
+      Frequently Asked Questions
+      </h2>
       <div className="w-full flex  flex-col justify-center items-center mb-[20px] gap-8 mr-[20px]">
         <Accordion
           className="border border-gray-300 w-full max-w-lg lg:max-w-[1200px]"
@@ -28,13 +31,13 @@ function Faq() {
             id="panel1d-header"
             className="bg-gray-100"
           >
-            <Typography>
+            <p className="font-medium">
               What is EM-Buddy? How is it different from ChatGPT and similar
-              tools?1
-            </Typography>
+              tools?
+            </p>
           </AccordionSummary>
           <AccordionDetails className="border-t border-gray-200 p-4">
-            <Typography>
+            <p>
               Unlike general chatbots like ChatGPT, EM-Buddy isn't designed for
               casual conversation. It's a specialized AI assistant focused on
               emergency medical dispatch (EMD). EM-Buddy offers a curated
@@ -42,7 +45,7 @@ function Faq() {
               evidence-based Q&A, medical resources, and realistic simulation
               scenarios. It's your free training partner to become a more
               confident and effective emergency dispatcher
-            </Typography>
+            </p>
           </AccordionDetails>
         </Accordion>
         <Accordion
@@ -56,13 +59,13 @@ function Faq() {
             id="panel2d-header"
             className="bg-gray-100"
           >
-            <Typography>Can anyone use EM-Buddy?</Typography>
+            <p className="font-medium">Can anyone use EM-Buddy?</p>
           </AccordionSummary>
           <AccordionDetails className="border-t border-gray-200 p-4">
-            <Typography>
+            <p>
               Anybody can use the Alpha version of EM-Buddy completely for free.
               You just have to create an account.
-            </Typography>
+            </p>
           </AccordionDetails>
         </Accordion>
         <Accordion
@@ -76,16 +79,16 @@ function Faq() {
             id="panel3d-header"
             className="bg-gray-100"
           >
-            <Typography>
+            <p className="font-medium">
               Are these all the features that EM-Buddy offers?
-            </Typography>
+            </p>
           </AccordionSummary>
           <AccordionDetails className="border-t border-gray-200 p-4">
-            <Typography>
+            <p>
               We're actively developing a beta version that will take things to
               the next level. Expect features like real-time audio scenarios for
               even more immersive training, and a whole lot more on the horizon.
-            </Typography>
+            </p>
           </AccordionDetails>
         </Accordion>
       </div>

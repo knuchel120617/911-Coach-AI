@@ -8,3 +8,4 @@ langchain
 pinecone-client
 langchain_community
 langchain-experimental
+ai21
