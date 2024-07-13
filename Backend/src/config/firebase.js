@@ -19,7 +19,6 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-// initializing Firebase admin SDK //TODO continue from here, I need the admin to verify token
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });

@@ -1,4 +1,4 @@
-// middleware that validates the Firebase token
+// middleware that validates the token
 
 import { admin } from "../config/firebase.js";
 
@@ -21,6 +21,7 @@ const verifyToken = (req, res, next) => {
     .then((decodedToken) => {
       req.user = decodedToken
       // Proceed to the next middleware or route handler
+
       next()
     })
     .catch((error) => {

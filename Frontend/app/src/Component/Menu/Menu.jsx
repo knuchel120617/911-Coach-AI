@@ -19,7 +19,7 @@ const features = [
       "No need to worry about screen size. Anima's Landing Page UI Kit adapts to any screen size, from desktop to mobile.",
   },
   {
-    title: "Past conversations",
+    title: "My conversations",
     description:
       "No need to worry about screen size. Anima's Landing Page UI Kit adapts to any screen size, from desktop to mobile.",
   },
@@ -31,9 +31,13 @@ const Menu = () => {
     switch (features) {
       case "Simulator":
         navigate("/simulator");
-
         break;
-
+      case "My conversations":
+        navigate("/conversations");
+        break;
+      case "Q&A":
+        navigate("/qa");
+        break;
       default:
         break;
     }

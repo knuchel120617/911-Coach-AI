@@ -16,7 +16,6 @@ Body:
   "password": "{password}",
   "name": "{name}"
 }
-
 ```
 
 ## Login / get user
@@ -34,7 +33,6 @@ Body:
   "email": "{email}",
   "password": "{password}",
 }
-
 ```
 
 The API returns the user object from the database, including the userID (_id).

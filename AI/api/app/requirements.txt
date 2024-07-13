@@ -3,7 +3,6 @@ uvicorn
 openai
 pydantic
 cohere
-ai21
 tiktoken
 langchain
 pinecone-client

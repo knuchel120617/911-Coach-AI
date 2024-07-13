@@ -7,6 +7,8 @@ const auth = getAuth();
 
 class AuthController {
   registerUser(req, res, next) {
+    console.log('registerUser', req.body);
+    // get email and password from the request body
     const { email, password } = req.body;
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -21,7 +23,7 @@ class AuthController {
         //res.send(userCredential);
       })
       .catch((error) => {
-        res.send(error);
+        res.status(401).send(error.message);
       });
   }
   loginUser(req, res, next) {
@@ -38,7 +40,7 @@ class AuthController {
         next();  // Move to the next middleware
       })
       .catch((error) => {
-        res.send(error);
+        res.status(401).send(error.message);
       });
   }
   logOutUser(req, res) {

@@ -25,7 +25,7 @@
 ## 🧐 Problem Statement <a name = "problem_statement"></a>
 
 TODO --> add description from the challenge description document
- 
+
 
 ## 💡 Idea / Solution <a name = "idea"></a>
 
@@ -42,7 +42,7 @@ and testing purposes.
 
 ### Prerequisites
 
- 
+
 
 ### Installing
 
@@ -71,7 +71,9 @@ Access the Application: Open a web browser and navigate to http://localhost:3000
 - [React](https://www.react.dev/) - Frontend Framework
 - [NodeJS](https://nodejs.org/) - JavaScript runtime environment
 - [MongoDB](https://www.mongodb.com/) - NoSQL database
-TODO --> add AI tech
+- [FastAPI](https://fastapi.tiangolo.com/) - A modern, fast (high-performance), web framework for building APIs
+- [Pinecone](www.pinecone.io) - Vector database
+- [Cohere](https://cohere.com) - Enterprise AI Platform
 
 ## ✍️ Authors <a name = "authors"></a>
 - [@MeriemTerki](https://github.com/MeriemTerki) 
