@@ -17,6 +17,7 @@ const Signin = () => {
     console.log(data.userData._id);
     localStorage.setItem("token", data.accessToken);
     localStorage.setItem("userId", data.userData._id);
+    localStorage.setItem("name", data.userData.name);
     console.log(localStorage.getItem("userId"));
 
     naviage("/menu");
