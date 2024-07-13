@@ -48,17 +48,18 @@ const Menu = () => {
       <MenuNavBar />
 
       <main className="flex flex-col items-center justify-center flex-grow">
-        <Typography variant="h4" component="h1" className="mt-8 mb-4">
+        <h1 className="text-xl font-bold mt-8 mb-4" style={{ color: '#333333' }}>
           Welcome Marya Sarah
-        </Typography>
-        <Typography
+        </h1>
+        <p
           variant="body1"
           component="p"
           className="mb-8 text-center max-w-2xl"
+          style={{ color: '#333333' }}
         >
           Welcome XYZ to Khanmigo, your AI-powered assistant. You can access all
           these features and unlock the power of AI.
-        </Typography>
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-screen-lg">
           {features.map((feature, index) => (
@@ -68,9 +69,9 @@ const Menu = () => {
               onClick={() => handleClick(feature.title)}
             >
               <CardContent>
-                <Typography variant="h5" component="div" className="mb-2">
+                <h6 style={{ color: '#333333' }} className="mb-2 font-bold">
                   {feature.title}
-                </Typography>
+                </h6>
                 <Typography variant="body2" color="text.secondary">
                   {feature.description}
                 </Typography>
