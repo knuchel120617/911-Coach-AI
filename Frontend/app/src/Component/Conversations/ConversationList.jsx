@@ -11,15 +11,6 @@ import bin from "../../assets/Conversations/bin.png";
 import { useNavigate } from "react-router-dom";
 
 
-const testData = [
-  { title: 'This is a bold title 1', date: '2024-07-12' },
-  { title: 'Another Bold Title 2', date: '2024-07-11' },
-  { title: 'Yet Another Bold Title 3', date: '2024-07-10' },
-  { title: 'This is a bold title 4', date: '2024-07-12' },
-  { title: 'Another Bold Title 5', date: '2024-07-11' },
-  { title: 'Yet Another Bold Title 6', date: '2024-07-10' },
-];
-
 const userId = localStorage.getItem('userId');
 const accessToken = localStorage.getItem('token');
 
