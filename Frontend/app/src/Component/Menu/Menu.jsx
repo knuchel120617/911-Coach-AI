@@ -2,6 +2,7 @@ import { Card, CardContent, Typography } from "@mui/material";
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from "react-router-dom";
 import MenuNavBar from "./MenuNavBar";
+import { useState, useEffect } from "react";
 
 const features = [
   {
@@ -28,6 +29,15 @@ const features = [
 
 const Menu = () => {
   const navigate = useNavigate();
+  const [userName, setUsername] = useState('');
+
+  useEffect(() => {
+    const name = localStorage.getItem('name');
+    if (name) {
+      setUsername(name);
+    }
+  }, []);
+
   const handleClick = (features) => {
     switch (features) {
       case "Simulator":
@@ -49,7 +59,7 @@ const Menu = () => {
 
       <main className="flex flex-col items-center justify-center flex-grow">
         <h1 className="text-xl font-bold mt-8 mb-4" style={{ color: '#333333' }}>
-          Welcome Marya Sarah
+          Welcome {userName}
         </h1>
         <p
           variant="body1"

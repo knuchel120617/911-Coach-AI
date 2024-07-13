@@ -46,6 +46,7 @@ const MenuNavBar = () => {
         // Clear local storage or any other storage mechanism
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
+        localStorage.removeItem('name');
 
         // Navigate to the login page or home page
         navigate('/signin');
