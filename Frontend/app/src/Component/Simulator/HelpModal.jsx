@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Drawer,
   IconButton,
@@ -11,6 +11,44 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 
 const HelpModal = ({ open, handleClose }) => {
+  const [messages, setMessages] = useState([
+    { text: "", isUser: true },
+    { text: "", isUser: false },
+  ]);
+  const [input, setInput] = useState("");
+
+  const handleClick = async () => {
+    if (input.trim()) {
+      const message = { question: input, isUser: true };
+
+      setMessages([{ text: input, isUser: true }]);
+      setInput(""); // Clear input field after sending
+
+      try {
+        const response = await fetch("https://em-buddy.onrender.com/qa", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(message),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const responseMessage = data.response;
+          console.log("responseMessage", responseMessage);
+
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            { text: responseMessage, isUser: false },
+          ]);
+        } else {
+          console.error("Error sending message:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error sending message:", error);
+      }
+    }
+  };
+
   return (
     <Drawer anchor="right" open={open} onClose={handleClose}>
       <Box
@@ -45,31 +83,24 @@ const HelpModal = ({ open, handleClose }) => {
               Q&A
             </Typography>
           </Box>
-          <Box
-            sx={{
-              backgroundColor: "#f7f7f7",
-              borderRadius: 2,
-              padding: 2,
-              marginBottom: 2,
-              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <Typography variant="body1">
-              What should I do if a baby is choking?
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              backgroundColor: "#e0f7fa",
-              borderRadius: 2,
-              padding: 2,
-              marginBottom: 2,
-              minHeight: "100px",
-              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <Typography variant="body2">Lorum ipsum</Typography>
-          </Box>
+          {/* Display messages where isUser=true */}
+          {messages.map((msg, index) => (
+            <Box
+              key={index}
+              sx={{
+                backgroundColor: msg.isUser ? "#f7f7f7" : "#e0f7fa",
+                borderRadius: 2,
+                padding: 2,
+                marginBottom: 2,
+                minHeight: "100px",
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <Typography variant={msg.isUser ? "body1" : "body2"}>
+                {msg.text}
+              </Typography>
+            </Box>
+          ))}
         </Box>
         <Stack
           direction="column"
@@ -79,7 +110,9 @@ const HelpModal = ({ open, handleClose }) => {
           <TextField
             fullWidth
             variant="outlined"
-            placeholder="Ask me anything"
+            label="Ask me anything"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
             sx={{
               borderRadius: 2,
               backgroundColor: "#fff",
@@ -91,6 +124,7 @@ const HelpModal = ({ open, handleClose }) => {
           />
           <Button
             variant="contained"
+            onClick={handleClick}
             fullWidth
             sx={{
               borderRadius: 2,
