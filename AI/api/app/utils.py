@@ -102,7 +102,6 @@ def simulate_chat(chat_history, scenario, conversation):
             conversation.append(ChatMessage(text=f"The dispatcher is saying: {comment}", role=RoleType.ASSISTANT))
         else:
             conversation.append(ChatMessage(text=f"{comment}", role=RoleType.USER))
-
     response = client.chat.create(
         system=system,
         messages=conversation,
