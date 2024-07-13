@@ -27,12 +27,12 @@ const NavBar = () => {
     setIsOpen(false);
   };
 
+  const logoPath = "/src/assets/logo/logo.svg";
+
   return (
     <AppBar position="static" color="transparent" elevation={0}>
       <Toolbar className="px-4 flex justify-between items-center mt-2">
-        <Typography variant="h6" noWrap>
-          EM-Buddyn
-        </Typography>
+      <img src={logoPath} alt="Logo" width="300px" height="150px"/>
         <div className="flex items-center space-x-4">
           <IconButton
             onClick={handleMenuToggle}
