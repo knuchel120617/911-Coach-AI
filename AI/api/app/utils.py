@@ -96,7 +96,6 @@ def simulate_chat(chat_history, scenario, conversation):
     conversation = []
 
     for msg in chat_history:
-        print(msg)
         author = msg.author
         comment = msg.comment
         if author == "ai":
