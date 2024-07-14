@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import ChatMessage from "./ChatMessage";
-import GuidelineCard from "./GuidelineCard";
-import HelpModal from "./HelpModal";
+import axios from "axios";
 import {
   TextField,
   Button,
@@ -9,24 +7,82 @@ import {
   Select,
   InputLabel,
   FormControl,
+  Box,
+  Typography,
+  Paper,
+  IconButton,
+  Modal,
 } from "@mui/material";
 import SparklesIcon from "@mui/icons-material/Stars";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
+
+import CloseIcon from "@mui/icons-material/Close";
+
 import Buttons from "../Button/Buttons";
 
+
 const Simulator = () => {
-  const [messages, setMessages] = useState([
-    { text: "I am very sick......", isUser: false },
-    { text: "I am very sick......", isUser: true },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [scenario, setScenario] = useState("");
+  const [scenarioDescription, setScenarioDescription] = useState("");
+  const [conversation, setConversation] = useState("");
   const [helpModalOpen, setHelpModalOpen] = useState(false);
 
-  const handleSend = () => {
+  const fetchScenarioDetails = async (selectedScenario) => {
+    try {
+      const response = await axios.post(
+        "https://em-buddy.onrender.com/scenario/",
+        {
+          emergency_type: selectedScenario,
+        }
+      );
+      setScenarioDescription(response.data.Scenario);
+      setConversation(response.data.Conversation);
+      setMessages([]); // Clear messages when scenario changes
+    } catch (error) {
+      console.error("Error fetching scenario details:", error);
+    }
+  };
+
+  const handleSend = async () => {
     if (input.trim()) {
-      setMessages([...messages, { text: input, isUser: true }]);
+      const newMessage = { author: "user", comment: input };
+      const updatedMessages = [...messages, newMessage];
+      setMessages(updatedMessages);
       setInput("");
+
+      console.log("Updated messages after user input:", updatedMessages);
+
+      try {
+        const response = await axios.post(
+          "https://em-buddy.onrender.com/simulation",
+          {
+            chat_history: updatedMessages,
+            scenario: scenarioDescription,
+            conversation: conversation,
+          }
+        );
+
+        console.log("Simulation response:", response.data);
+
+        // Handle AI response and add it to chat history
+        if (response.data && response.data["AI response"]) {
+          const aiResponse = response.data["AI response"];
+          const aiMessage = { author: "ai", comment: aiResponse };
+          const updatedMessagesWithAI = [...updatedMessages, aiMessage];
+          setMessages(updatedMessagesWithAI);
+
+          console.log("Updated messages after AI response:", updatedMessagesWithAI);
+        } else {
+          console.error("AI response is missing or not formatted correctly");
+        }
+      } catch (error) {
+        console.error("Error fetching AI response:", error);
+        if (error.response) {
+          console.error("Server error details:", error.response.data);
+        }
+      }
     }
   };
 
@@ -38,8 +94,13 @@ const Simulator = () => {
     setHelpModalOpen(false);
   };
 
+  const handleScenarioSelect = (selectedScenario) => {
+    setScenario(selectedScenario);
+    fetchScenarioDetails(selectedScenario); // Fetch scenario details when scenario changes
+  };
+
   return (
-    <div className="p-6 flex flex-col items-center">
+    <Box className="p-6 flex flex-col items-center">
       <FormControl fullWidth variant="outlined" className="mb-4 max-w-2xl">
       <InputLabel
         sx={{
@@ -55,26 +116,34 @@ const Simulator = () => {
       </InputLabel>
         <Select
           value={scenario}
-          onChange={(e) => setScenario(e.target.value)}
+          onChange={(e) => handleScenarioSelect(e.target.value)}
           label="Scenario definition"
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value="scenario1">Cardiac Arrest</MenuItem>
-          <MenuItem value="scenario2">Choking</MenuItem>
-          <MenuItem value="scenario3">Drowning</MenuItem>
-          <MenuItem value="scenario4">Electrocution</MenuItem>
-          <MenuItem value="scenario5">Pregnancy</MenuItem>
-          <MenuItem value="scenario6">Unconscious</MenuItem>
-          <MenuItem value="scenario7">Bleeding</MenuItem>
-          <MenuItem value="scenario8">Injury</MenuItem>
-          <MenuItem value="scenario9">Headache</MenuItem>
-          <MenuItem value="scenario10">Health Care Provider Requests EMS</MenuItem>
-          <MenuItem value="scenario11">Home Medical Equipment Failure</MenuItem>
-          <MenuItem value="scenario12">Childbirth</MenuItem>
+          <MenuItem value="Cardiac Arrest">Cardiac Arrest</MenuItem>
+          <MenuItem value="Choking">Choking</MenuItem>
+          <MenuItem value="Drowning">Drowning</MenuItem>
+          <MenuItem value="Electrocution">Electrocution</MenuItem>
+          <MenuItem value="Pregnancy">Pregnancy</MenuItem>
+          <MenuItem value="Unconscious">Unconscious</MenuItem>
+          <MenuItem value="Bleeding">Bleeding</MenuItem>
+          <MenuItem value="Injury">Injury</MenuItem>
+          <MenuItem value="Headache">Headache</MenuItem>
+          <MenuItem value="Health Care Provider Requests EMS">
+            Health Care Provider Requests EMS
+          </MenuItem>
+          <MenuItem value="Home Medical Equipment Failure">
+            Home Medical Equipment Failure
+          </MenuItem>
+          <MenuItem value="Childbirth">Childbirth</MenuItem>
+          {/* Add other scenario options */}
         </Select>
       </FormControl>
+
+
+      <Box className="mb-4 w-full max-w-4xl">
 
       <GuidelineCard
         guidelines="Automation: AI can automate repetitive and mundane tasks, saving time and effort for humans. It can handle large volumes of data, perform complex calculations, and execute tasks with precision and consistency. This automation leads to increased productivity and efficiency in various industries."
@@ -82,13 +151,32 @@ const Simulator = () => {
       />
 
       <div className="mb-4 w-full max-w-4xl">
+
         {messages.map((message, index) => (
-          <ChatMessage
+          <Box
             key={index}
-            message={message.text}
-            isUser={message.isUser}
-          />
+            display="flex"
+            justifyContent={message.author === "ai" ? "flex-start" : "flex-end"}
+            mb={2}
+          >
+            <Paper
+              elevation={3}
+              style={{
+                padding: "10px",
+                borderRadius: "10px",
+                backgroundColor: message.author === "ai" ? "#e0f7fa" : "#bbdefb",
+              }}
+            >
+              <Typography
+                style={{ color: message.author === "ai" ? "#00796b" : "#0d47a1" }}
+              >
+                {message.comment}
+              </Typography>
+            </Paper>
+          </Box>
         ))}
+
+=======
       </div>
       <div style={{
         backgroundColor: '#F8F9FF', 
@@ -102,6 +190,7 @@ const Simulator = () => {
           <p className="text-center">End call and generate feedback</p>
         </div>
         <div className="flex justify-center items-center flex-row w-full mb-4">
+
         <TextField
           fullWidth
           variant="outlined"
@@ -109,19 +198,25 @@ const Simulator = () => {
           style={{ fontFamily: 'Poppins, sans-serif' }}
           value={input}
           onChange={(e) => setInput(e.target.value)}
+
+
           className="flex rounded-lg"
           InputProps={{ className: "rounded-lg" }}
+
         />
 
         <Buttons
           onClick={handleSend}
+
           primary
           type="submit"
           className="text-white bg-[#009379] px-10 py-5 border-none rounded-[10px] text-sm" 
           style={{ minWidth: "auto", width: "auto", marginLeft: "10px" }}
+
         >
           Send
         </Buttons>
+
 
 
         <div className="flex items-center ml-[130px]">
@@ -139,6 +234,7 @@ const Simulator = () => {
       <HelpModal open={helpModalOpen} handleClose={handleHelpClose} />
     </div>
       </div>
+
 
 
   );
