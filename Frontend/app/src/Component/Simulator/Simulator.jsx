@@ -31,7 +31,7 @@ const Simulator = () => {
   const fetchScenarioDetails = async (selectedScenario) => {
     try {
       const response = await axios.post(
-        "https://nine11-coach-ai.onrender.com/scenario/",
+        "https://em-buddy.onrender.com/scenario/",
         {
           emergency_type: selectedScenario,
         }
