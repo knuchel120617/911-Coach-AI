@@ -117,7 +117,7 @@ def simulate_chat(chat_history, scenario, conversation):
     Conversation:
     {conversation}
 
-    When you respond, use the first person pronoun "I" to indicate that you are the caller. For example, "I am experiencing chest pain" or "I am at the corner of 5th and Main Street".
+    When you respond, JUST use the first person pronoun "I" to indicate that you are the caller. For example, "I am experiencing chest pain" or "I am at the corner of 5th and Main Street". Don't mention something like "The dispatcher is saying: XYZ".
     """
     conversation = []
 
