@@ -10,34 +10,34 @@ import bin from "../../assets/Conversations/bin.png";
 import { useNavigate } from "react-router-dom";
 
 
-const fetchData = async () => {
-  try {
-    const url = `https://medihacks-ka2dwt1hz-marikas-projects-22112c00.vercel.app/conversations/${userId}`
-    console.log(url);
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${accessToken}`
-      }
-    }); // Replace with your actual API endpoint
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    return []; // Handle errors gracefully, e.g., return empty array or display an error message
-  }
-};
-
 
 export default function ConversationsList() {
   const [items, setItems] = useState([]); // State to store fetched items
   const [selectedItem, setSelectedItem] = useState(null);
   const [userId, setUserId] = useState(localStorage.getItem('userId'));
   const [accessToken, setAccessToken] = useState(localStorage.getItem('token'));
+  
+  const fetchData = async () => {
+    try {
+      const url = `https://medihacks-ka2dwt1hz-marikas-projects-22112c00.vercel.app/conversations/${userId}`
+      console.log(url);
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        }
+      }); 
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return []; // Handle errors gracefully, e.g., return empty array or display an error message
+    }
+  };
 
   useEffect(() => {
     const getData = async () => {

@@ -34,7 +34,7 @@ const MenuNavBar = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch('http://localhost:3000/users/logout', {
+      const response = await fetch('https://medihacks-ka2dwt1hz-marikas-projects-22112c00.vercel.app/users/logout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
