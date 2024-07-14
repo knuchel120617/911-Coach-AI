@@ -25,3 +25,12 @@
     padding: 10px 20px;
     cursor: pointer;
 }
+
+#custom-textfield .MuiInputBase-input {
+    font-family: 'Poppins', sans-serif;
+    border-radius: 10px; /* Ensures the rounded corners are preserved */
+  }
+  
+  #custom-textfield .MuiInputLabel-root {
+    font-family: 'Poppins', sans-serif;
+  }

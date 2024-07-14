@@ -103,6 +103,7 @@ const Simulator = () => {
         </div>
         <div className="flex justify-center items-center flex-row w-full mb-4">
         <TextField
+          id="custom-textfield"
           fullWidth
           variant="outlined"
           label="Send an instruction or a question to the caller"
@@ -110,7 +111,6 @@ const Simulator = () => {
           onChange={(e) => setInput(e.target.value)}
           className="flex rounded-lg"
           InputProps={{ className: "rounded-lg" }}
-          style={{ marginRight: "10px" }}
         />
 
         <Buttons

@@ -8,7 +8,7 @@ const GuidelineCard = ({ guidelines }) => {
         <div>
           <SparklesIcon className="mr-2 text-[#009379]" />
         </div>
-        <div className="bg-gray-100 p-4 rounded-lg ml-2  shadow-md">
+        <div className="bg-gray-100 p-4 rounded-lg ml-2 shadow-md">
           <h3 className="font-semibold mb-2">Guidelines:</h3>
           <p>{guidelines}</p>
         </div>

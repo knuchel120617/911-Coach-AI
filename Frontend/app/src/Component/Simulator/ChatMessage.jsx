@@ -7,22 +7,19 @@ const ChatMessage = ({ message, isUser }) => {
 
   return (
     <div
-      className={`flex items-start ${isUser ? "justify-end" : "justify-start"} my-2`}
+      className={`flex items-center ${isUser ? "justify-end" : "justify-start"} my-2`}
     >
-      {!isUser && <PersonIcon className="mr-2 text-gray-500" />}
+      {!isUser && <PersonIcon className="mr-2 text-[#009379]" />}
       <div
-        className={`flex w-full gap-14 mb-4 ${isUser ? "bg-green-100" : "bg-gray-100"} max-w-4xl`}
+        className={`p-4 rounded-lg ml-2 text-md shadow-md flex w-full gap-14 mb-4 ${isUser ? "bg-[#E4ECEA]" : "bg-[#FFF]"} max-w-4xl`}
       >
-        <TextField
+        <p
           fullWidth
-          variant="outlined"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="rounded-lg"
-          InputProps={{ className: "rounded-lg" }}
-        />
+        >
+          {input}
+          </p>
       </div>
-      {isUser && <PersonIcon className="ml-2 text-gray-500" />}
+      {isUser && <PersonIcon className="ml-2 text-[#333333]" />}
     </div>
   );
 };
