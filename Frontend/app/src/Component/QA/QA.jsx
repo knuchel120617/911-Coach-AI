@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import QAMessage from "./QAmessage";
 import GuidelineCard from "../Simulator/GuidelineCard";
-
+import Buttons from "../Button/Buttons";
 import {
   TextField,
   Button,
@@ -14,8 +14,8 @@ import SparklesIcon from "@mui/icons-material/Stars";
 
 const QA = () => {
   const [messages, setMessages] = useState([
-    { text: "", isUser: true },
-    { text: "", isUser: false },
+    { text: "Hello", isUser: true },
+    { text: "Hey", isUser: false },
   ]);
   const [input, setInput] = useState("");
 
@@ -87,8 +87,14 @@ const QA = () => {
         ))}
       </div>
 
-
-      <div className="flex w-full max-w-4xl mb-4">
+      <div style={{
+        backgroundColor: '#F8F9FF', 
+        position: 'sticky',
+        bottom: 0,
+        width: '100%',
+        zIndex: 1000, // Ensure it stays on top
+      }} className="w-full flex flex-col">
+      <div className="flex flex-row justify-center items-center py-3">
         <TextField
           fullWidth
           variant="outlined"
@@ -100,20 +106,18 @@ const QA = () => {
           style={{ marginRight: "10px" }}
         />
 
-        <Button
+        <Buttons
           variant="contained"
           color="primary"
           onClick={handleSend}
-          className="py-2 px-4 shadow-md"
-          style={{
-            marginLeft: "30px",
-            padding: "5px 80px", // Adjusted padding for the button size
-            fontSize: "14px", // Adjusted font size if needed
-            borderRadius: "9999px", // Ensures the button is fully rounded
-          }}
+          primary
+          type="submit"
+          className="text-white bg-[#009379] px-10 py-5 border-none rounded-[10px] text-sm" 
+          style={{ minWidth: "auto", width: "auto", marginLeft: "10px" }}
         >
-          ASK
-        </Button>
+          Ask
+        </Buttons>
+      </div>
       </div>
     </div>
   );

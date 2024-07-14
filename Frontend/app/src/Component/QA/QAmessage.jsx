@@ -10,21 +10,15 @@ const QAMessage = ({ message, isUser }) => {
     <div
       className={`flex items-start ${isUser ? "justify-end" : "justify-start"} my-2`}
     >
-      {!isUser && <PersonIcon className="mr-2 text-gray-500" />}
+      {!isUser && <PersonIcon className="mr-2 text-[#009379]"/>}
       <div
-        className={`flex w-full gap-14 mb-4 ${isUser ? "bg-gray-100" : "bg-green-100"} max-w-4xl`}
+        className={`p-4 rounded-lg ml-2 text-md shadow-md flex w-full gap-14 mb-4 ${isUser ? "bg-[#E4ECEA]" : "bg-[#FFF]"} max-w-4xl`}
       >
-        <TextField
-          fullWidth
-          multiline
-          variant="outlined"
-          value={message}
-          
-          className="rounded-lg"
-          InputProps={{ className: "rounded-lg" }}
-        />
+        <p fullWidth>
+          {message}
+        </p>
       </div>
-      {isUser && <PersonIcon className="ml-2 text-gray-500" />}
+      {isUser && <PersonIcon className="ml-2 text-[#333333]" />}
     </div>
   );
 };
