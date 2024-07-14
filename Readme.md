@@ -35,7 +35,7 @@ chat-based conversations with AI, who is acting as a caller to emergency service
 to Q&A functionality, where they are able to get evidence-based information about different medical emergencies. 
 They have access to the Q&A functionality also during the simulations.
 
-TODO ---> what do we mention about feedback functionality
+We will soon integrate a feedback function that will provide users with insights about their performance based on protocols and EMD conversations that were retrieved from medical books.
 
 Check the [Figma prototype](https://www.figma.com/design/qIqalwlEH6M2GBUdpbUeUz/Landing-Page-UI-Kit---Fully-customizable-landing-page-UI-kit---Export-as-HTML-(Community)?node-id=0-1&t=hhnQ36NwNKehzHsu-1) to learn more about 911 Coach AI.
 ## ⛓️ Prototype <a name = "prototype"></a>
