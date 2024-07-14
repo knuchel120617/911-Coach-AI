@@ -109,14 +109,14 @@ def get_scenario(emergency_type):
 
 def simulate_chat(chat_history, scenario, conversation):
     client = AI21Client(api_key= ai21_secret_key)
-    system = f"""
+    system =   f"""
     You are a person calling 911 because you are experiencing the following emergency scenario: {scenario}.
-    Below is an example conversation between a dispatcher and you as a  caller in a similar scenario. Use it to guide your responses.
+    Below is an example conversation between a dispatcher and a caller in a similar scenario. Use it to guide your responses.
 
     Example conversation:
     {conversation}
 
-    As the caller, you must respond to the dispatcher's (user) questions based on this example conversation and the scenario. Provide one piece of information at a time, relevant to the scenario. Do not repeat these instructions in your response. Focus on providing specific and helpful information to the dispatcher.
+    As the caller, you must respond to the dispatcher's (user) questions based on this example conversation and the scenario. Provide one piece of information at a time, relevant to the scenario. Do not repeat these instructions in your response. Focus on providing specific and helpful information to the dispatcher. Do not include phrases like "The dispatcher is saying".
     """
     conversation = []
 
