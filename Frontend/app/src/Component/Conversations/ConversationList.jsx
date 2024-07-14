@@ -9,9 +9,9 @@ import { Typography, Avatar } from "@mui/material";
 import bin from "../../assets/Conversations/bin.png";
 import { useNavigate } from "react-router-dom";
 
+const [userId, setUserId] = useState(localStorage.getItem('userId'));
+const [accessToken, setAccessToken] = useState(localStorage.getItem('token'));
 
-const userId = localStorage.getItem('userId');
-const accessToken = localStorage.getItem('token');
 
 const fetchData = async () => {
   try {
