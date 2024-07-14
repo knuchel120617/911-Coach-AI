@@ -10,16 +10,14 @@ import {
   Box,
   Typography,
   Paper,
-  IconButton,
-  Modal,
 } from "@mui/material";
 import SparklesIcon from "@mui/icons-material/Stars";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
-
 import CloseIcon from "@mui/icons-material/Close";
-
 import Buttons from "../Button/Buttons";
+import HelpModal from "./HelpModal"
 
+import GuidelineCard from "./GuidelineCard";
 
 const Simulator = () => {
   const [messages, setMessages] = useState([]);
@@ -52,8 +50,6 @@ const Simulator = () => {
       setMessages(updatedMessages);
       setInput("");
 
-      console.log("Updated messages after user input:", updatedMessages);
-
       try {
         const response = await axios.post(
           "https://em-buddy.onrender.com/simulation",
@@ -64,16 +60,11 @@ const Simulator = () => {
           }
         );
 
-        console.log("Simulation response:", response.data);
-
-        // Handle AI response and add it to chat history
         if (response.data && response.data["AI response"]) {
           const aiResponse = response.data["AI response"];
           const aiMessage = { author: "ai", comment: aiResponse };
           const updatedMessagesWithAI = [...updatedMessages, aiMessage];
           setMessages(updatedMessagesWithAI);
-
-          console.log("Updated messages after AI response:", updatedMessagesWithAI);
         } else {
           console.error("AI response is missing or not formatted correctly");
         }
@@ -102,18 +93,17 @@ const Simulator = () => {
   return (
     <Box className="p-6 flex flex-col items-center">
       <FormControl fullWidth variant="outlined" className="mb-4 max-w-2xl">
-      <InputLabel
-        sx={{
-          fontFamily: 'Poppins, sans-serif', // Custom font
-          color: '#333333', // Custom text color
-          borderRadius: '8px', // Custom border radius
-          padding: '0 8px' // Optional: Adjust padding to match border radius
-        }}
-        
-        className = "text-sm"
-      >
-        Scenario definition
-      </InputLabel>
+        <InputLabel
+          sx={{
+            fontFamily: 'Poppins, sans-serif', // Custom font
+            color: '#333333', // Custom text color
+            borderRadius: '8px', // Custom border radius
+            padding: '0 8px' // Optional: Adjust padding to match border radius
+          }}
+          className="text-sm"
+        >
+          Scenario definition
+        </InputLabel>
         <Select
           value={scenario}
           onChange={(e) => handleScenarioSelect(e.target.value)}
@@ -142,15 +132,11 @@ const Simulator = () => {
         </Select>
       </FormControl>
 
-
       <Box className="mb-4 w-full max-w-4xl">
-
-      <GuidelineCard
-        guidelines="Automation: AI can automate repetitive and mundane tasks, saving time and effort for humans. It can handle large volumes of data, perform complex calculations, and execute tasks with precision and consistency. This automation leads to increased productivity and efficiency in various industries."
-        className="mb-4"
-      />
-
-      <div className="mb-4 w-full max-w-4xl">
+        <GuidelineCard
+          guidelines="Automation: AI can automate repetitive and mundane tasks, saving time and effort for humans. It can handle large volumes of data, perform complex calculations, and execute tasks with precision and consistency. This automation leads to increased productivity and efficiency in various industries."
+          className="mb-4"
+        />
 
         {messages.map((message, index) => (
           <Box
@@ -164,79 +150,73 @@ const Simulator = () => {
               style={{
                 padding: "10px",
                 borderRadius: "10px",
-                backgroundColor: message.author === "ai" ? "#e0f7fa" : "#bbdefb",
+                backgroundColor:
+                  message.author === "ai" ? "#e0f7fa" : "#bbdefb",
               }}
             >
               <Typography
-                style={{ color: message.author === "ai" ? "#00796b" : "#0d47a1" }}
+                style={{
+                  color: message.author === "ai" ? "#00796b" : "#0d47a1",
+                }}
               >
                 {message.comment}
               </Typography>
             </Paper>
           </Box>
         ))}
+      </Box>
 
-=======
-      </div>
-      <div style={{
-        backgroundColor: '#F8F9FF', 
-        position: 'sticky',
-        bottom: 0,
-        width: '100%',
-        zIndex: 1000, // Ensure it stays on top
-      }} className="w-full flex flex-col">
+      <div
+        style={{
+          backgroundColor: "#F8F9FF",
+          position: "sticky",
+          bottom: 0,
+          width: "100%",
+          zIndex: 1000, // Ensure it stays on top
+        }}
+        className="w-full flex flex-col"
+      >
         <div className="flex flex-row justify-center items-center mb-4">
           <SparklesIcon className="flex justify-center items-center mr-3 text-[#009379]" />
           <p className="text-center">End call and generate feedback</p>
         </div>
         <div className="flex justify-center items-center flex-row w-full mb-4">
-
-        <TextField
-          fullWidth
-          variant="outlined"
-          label="Send an instruction or a question to the caller"
-          style={{ fontFamily: 'Poppins, sans-serif' }}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-
-
-          className="flex rounded-lg"
-          InputProps={{ className: "rounded-lg" }}
-
-        />
-
-        <Buttons
-          onClick={handleSend}
-
-          primary
-          type="submit"
-          className="text-white bg-[#009379] px-10 py-5 border-none rounded-[10px] text-sm" 
-          style={{ minWidth: "auto", width: "auto", marginLeft: "10px" }}
-
-        >
-          Send
-        </Buttons>
-
-
-
-        <div className="flex items-center ml-[130px]">
-          <QuestionMarkIcon
-            style={{
-              fontSize: "30px", // Reduced size to fit better
-              color: "#009379", // Matched button color
-              cursor: "pointer",
-            }}
-            onClick={handleHelpClick}
+          <TextField
+            fullWidth
+            variant="outlined"
+            label="Send an instruction or a question to the caller"
+            style={{ fontFamily: 'Poppins, sans-serif' }}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="flex rounded-lg"
+            InputProps={{ className: "rounded-lg" }}
           />
+
+          <Buttons
+            onClick={handleSend}
+            primary
+            type="submit"
+            className="text-white bg-[#009379] px-10 py-5 border-none rounded-[10px] text-sm"
+            style={{ minWidth: "auto", width: "auto", marginLeft: "10px" }}
+          >
+            Send
+          </Buttons>
+
+          <div className="flex items-center ml-[130px]">
+            <QuestionMarkIcon
+              style={{
+                fontSize: "30px", // Reduced size to fit better
+                color: "#009379", // Matched button color
+                cursor: "pointer",
+              }}
+              onClick={handleHelpClick}
+            />
+          </div>
         </div>
+
+        <HelpModal open={helpModalOpen} handleClose={handleHelpClose} />
       </div>
-
-      <HelpModal open={helpModalOpen} handleClose={handleHelpClose} />
-    </div>
-      </div>
-
-
-
+    </Box>
   );
 };
 
