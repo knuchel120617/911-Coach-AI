@@ -2,7 +2,7 @@
   <a href="" rel="noopener">
  <img src="./assets/12345.png"></a>
 </p>-->
-<h3 align="center">Project name</h3>
+<h3 align="center">911 Coach AI</h3>
 
 <div align="center">
 
@@ -10,7 +10,7 @@
 
 ---
 
-<p align="center"> This project is our solution to the Emergency Dispatch Conversation AI -challenge at MediHacks 2024 -Hackathon (https://www.medihacks.org/).
+<p align="center"> This project is our solution to the Emergency Dispatch Conversation AI - challenge at MediHacks 2024 - Hackathon (https://www.medihacks.org/).
 
 </p>
 
@@ -29,14 +29,15 @@ Emergency dispatchers often face training that is out of date, along with outdat
 
 ## 💡 Idea / Solution <a name = "idea"></a>
 
-Our solution is a web application aimed for emergency medical dispatchers. Our users are able to create an account
-and login to the application, where they can simulate different medical emergency scenarios. They are able to have
-chat-based conversations with AI, who is acting as a caller to the emergency services. Additionally users have access
+Our solution is a web application aimed at emergency medical dispatchers. Our users are able to create an account
+and log in to the application, where they can simulate different medical emergency scenarios. They are able to have
+chat-based conversations with AI, who is acting as a caller to emergency services. Additionally, users have access
 to Q&A functionality, where they are able to get evidence-based information about different medical emergencies. 
 They have access to the Q&A functionality also during the simulations.
 
 TODO ---> what do we mention about feedback functionality
 
+Check the [Figma prototype](https://www.figma.com/design/qIqalwlEH6M2GBUdpbUeUz/Landing-Page-UI-Kit---Fully-customizable-landing-page-UI-kit---Export-as-HTML-(Community)?node-id=0-1&t=hhnQ36NwNKehzHsu-1) to learn more about 911 Coach AI.
 ## ⛓️ Prototype <a name = "prototype"></a>
 
 Our application consists of a React frontend, that has been secured with Firebase authentication and
