@@ -95,14 +95,14 @@ def question_answer(question):
 
 def get_scenario(emergency_type):
     embeddings = CohereEmbeddings(cohere_api_key=cohere_secret_key, user_agent="dispatch-ai")
-    vector = embeddings.embed_query(f"Scenario of {emergency_type} with a conversation")
+    vector = embeddings.embed_query(f"Emergency of Type {emergency_type} with a scenario and a conversation between caller and dispatcher")
     pc = Pinecone(api_key=pinecone_secret_key)
     index = pc.Index(index_name)
     results = index.query(
         vector=vector,
-        top_k=2,
+        top_k=3,
         include_metadata=True,
-        filters={'Emergency Type': emergency_type, 'Type': 'Scenario'}
+        metadata={'Emergency Type': emergency_type, 'Type': "Scenario"}
     )
     return format_scenario_2(results['matches'][0])
 
