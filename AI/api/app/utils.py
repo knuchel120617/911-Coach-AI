@@ -76,7 +76,7 @@ def question_answer(question):
     results = extract_document_info(results)
     if len(results) == 0:
         response = co.generate(
-            prompt=f"""You are a AI-powered assistant that answer questions related to a medical emergency. You should provide a concise and accurate response to the Emergency medical dispatcher agent. Add references if needed, here's the question: {question}""",
+            prompt=f"""You are an AI-powered assistant that answer questions related to a medical emergency and allow dispatchers. If the question is related to the medical field say that you still don't have knowledge about that, if it's unrelated say that you can't help with that.""",
             model='command-xlarge-nightly',
             max_tokens=800,
             temperature=0.2,
@@ -85,7 +85,7 @@ def question_answer(question):
         )
     else:
         response = co.generate(
-            prompt=f"""You are a AI-powered assistant that answer questions related to a medical emergency. You should provide a concise and accurate response to the Emergency medical dispatcher agent based on these documents: {results}. Here's the question: {question}. Make sure to mention the references and the links below.""",
+            prompt=f"""You are a AI-powered assistant that answer questions related to a medical emergency. You should provide a concise and accurate response to the Emergency medical dispatcher agent based on these documents: {results}. Here's the question: {question}. Make sure to format well all the references and the links below.""",
             model='command-xlarge-nightly',
             max_tokens=800,
             temperature=0.2,

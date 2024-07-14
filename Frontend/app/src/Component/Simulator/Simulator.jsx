@@ -140,10 +140,7 @@ const Simulator = () => {
           onChange={(e) => handleScenarioSelect(e.target.value)}
           label="Scenario definition"
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value="Cardiac Arrest">Cardiac Arrest</MenuItem>
+          <MenuItem value="Cardiac Arrest" selected>Cardiac Arrest</MenuItem>
           <MenuItem value="Choking">Choking</MenuItem>
           <MenuItem value="Drowning">Drowning</MenuItem>
           <MenuItem value="Electrocution">Electrocution</MenuItem>
@@ -172,27 +169,20 @@ const Simulator = () => {
         {messages.map((message, index) => (
           <Box
             key={index}
-            display="flex"
+            display="flex full-width"
             justifyContent={message.author === "ai" ? "flex-start" : "flex-end"}
+            className={`${message.author === "ai" ? "bg-[#8fcfc4]" : "bg-[#ffffff]"} p-4 rounded-lg ml-2 text-md bg-transparent flex w-full gap-14 mb-4 max-w-4xl`}
             mb={2}
           >
-            <Paper
-              elevation={3}
-              style={{
-                padding: "10px",
-                borderRadius: "10px",
-                backgroundColor:
-                  message.author === "ai" ? "#e0f7fa" : "#bbdefb",
-              }}
-            >
-              <Typography
+              <p
                 style={{
-                  color: message.author === "ai" ? "#00796b" : "#0d47a1",
+                  color: "#333333",
+                  fontFamily: 'Poppins, sans-serif', // Custom font
                 }}
+                className={`flex w-full gap-5 mb-4 max-w-4xl`}
               >
                 {message.comment}
-              </Typography>
-            </Paper>
+              </p>
           </Box>
         ))}
       </Box>
