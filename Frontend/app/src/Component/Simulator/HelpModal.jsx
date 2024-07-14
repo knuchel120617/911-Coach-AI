@@ -12,8 +12,6 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const HelpModal = ({ open, handleClose }) => {
   const [messages, setMessages] = useState([
-    { text: "", isUser: true },
-    { text: "", isUser: false },
   ]);
   const [input, setInput] = useState("");
 
@@ -53,7 +51,8 @@ const HelpModal = ({ open, handleClose }) => {
     <Drawer anchor="right" open={open} onClose={handleClose}>
       <Box
         sx={{
-          width: { xs: "80%", sm: "300px" },
+          width: { xs: "80%", sm: "400px" },
+          backgroundColor: "#F8F9FF",
           p: 2,
           display: "flex",
           flexDirection: "column",
@@ -62,41 +61,46 @@ const HelpModal = ({ open, handleClose }) => {
         }}
       >
         <Box>
+        <div style={{
+        backgroundColor: '#F8F9FF', 
+        zIndex: 1000,
+        width: '100%',
+        position: 'sticky', top: 0 // Ensure it stays on top
+      }}>
           <Box
             sx={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              
             }}
           >
-            <Typography variant="h6">Help</Typography>
             <IconButton aria-label="close" onClick={handleClose}>
               <CloseIcon />
             </IconButton>
           </Box>
-          <Box sx={{ textAlign: "center", marginBottom: 2 }}>
-            <Typography
-              variant="h5"
-              component="h2"
-              sx={{ fontWeight: "bold", marginTop: 2 }}
+          <Box sx={{ textAlign: "center", marginBottom: 2, paddingBottom: 2}}>
+            <h1 className="text-2xl font-bold"
+              sx={{ fontWeight: "bold", marginTop: 2, color: "#333333" }}
             >
               Q&A
-            </Typography>
+            </h1>
           </Box>
+          </div>
           {/* Display messages where isUser=true */}
           {messages.map((msg, index) => (
             <Box
               key={index}
               sx={{
-                backgroundColor: msg.isUser ? "#f7f7f7" : "#e0f7fa",
+                backgroundColor: msg.isUser ? '#E4ECEA' : "#FFF",
                 borderRadius: 2,
                 padding: 2,
                 marginBottom: 2,
-                minHeight: "100px",
                 boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                wordBreak: 'break-word'
               }}
             >
-              <Typography variant={msg.isUser ? "body1" : "body2"}>
+              <Typography variant='body2' style={{ fontFamily: 'Poppins, sans-serif' }}>
                 {msg.text}
               </Typography>
             </Box>
@@ -105,7 +109,7 @@ const HelpModal = ({ open, handleClose }) => {
         <Stack
           direction="column"
           spacing={2}
-          sx={{ alignItems: "center", marginTop: 2 }}
+          sx={{ alignItems: "center", marginTop: 2, position: 'sticky', zIndex: 1000, bottom: 0, paddingBottom: 2 }}
         >
           <TextField
             fullWidth
@@ -117,6 +121,7 @@ const HelpModal = ({ open, handleClose }) => {
               borderRadius: 2,
               backgroundColor: "#fff",
               boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+              fontFamily: 'Poppins, sans-serif'
             }}
             InputProps={{
               className: "rounded-lg",
@@ -128,10 +133,12 @@ const HelpModal = ({ open, handleClose }) => {
             fullWidth
             sx={{
               borderRadius: 2,
-              backgroundColor: "#1976d2",
+              backgroundColor: "#009379",
               "&:hover": {
-                backgroundColor: "#115293",
+                backgroundColor: "#009379",
               },
+              padding: "12.5px 10px",
+              fontFamily: 'Poppins, sans-serif'
             }}
           >
             Ask

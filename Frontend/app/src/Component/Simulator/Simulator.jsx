@@ -107,6 +107,7 @@ const Simulator = () => {
           fullWidth
           variant="outlined"
           label="Send an instruction or a question to the caller"
+          style={{ fontFamily: 'Poppins, sans-serif' }}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           className="flex rounded-lg"
