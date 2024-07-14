@@ -30,7 +30,7 @@ const Simulator = () => {
   const fetchScenarioDetails = async (selectedScenario) => {
     try {
       const response = await axios.post(
-        "https://em-buddy.onrender.com/scenario/",
+        "https://em-buddy-1.onrender.com/scenario/",
         {
           emergency_type: selectedScenario,
         }
@@ -52,7 +52,7 @@ const Simulator = () => {
 
       try {
         const response = await axios.post(
-          "https://em-buddy.onrender.com/simulation",
+          "https://em-buddy-1.onrender.com/simulation",
           {
             chat_history: updatedMessages,
             scenario: scenarioDescription,
