@@ -32,7 +32,11 @@ const NavBar = () => {
   return (
     <AppBar className="px-[40px]" id="nav-bar-home" position="static" color="transparent" elevation={0}>
       <Toolbar className="px-4 flex justify-between items-center mt-2">
-      <img src={logoPath} alt="Logo" width="300px" height="150px"/>
+      <div className="flex flex-row gap-3 justify-center items-center align-center">
+      <img src={logoPath} alt="Logo" width="27.5px" height="auto"/>
+      <p className="font-medium" style={{ color: '#333333' }}>999 Coach AI</p>
+      </div>
+      
 
         <div className="flex items-center space-x-4">
           <IconButton

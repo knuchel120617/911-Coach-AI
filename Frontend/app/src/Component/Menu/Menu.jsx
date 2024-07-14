@@ -1,32 +1,43 @@
 import { Card, CardContent, Typography } from "@mui/material";
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from "react-router-dom";
 import MenuNavBar from "./MenuNavBar";
+import { useState, useEffect } from "react";
 
 const features = [
   {
     title: "Simulator",
     description:
-      "No need to worry about screen size. Anima's Landing Page UI Kit adapts to any screen size, from desktop to mobile.",
+      "Simulate an emergency call where you are the dispatcher and chatting with the caller.",
   },
   {
     title: "Q&A",
     description:
-      "No need to worry about screen size. Anima's Landing Page UI Kit adapts to any screen size, from desktop to mobile.",
+      "Access our AI-powered Q&A feature where you are able to get your medical emergency related questions answered.",
   },
   {
     title: "AI Feedback",
     description:
-      "No need to worry about screen size. Anima's Landing Page UI Kit adapts to any screen size, from desktop to mobile.",
+      "Get feedback on your completed simulations and how well you followed the relevant protocols.",
   },
   {
     title: "My conversations",
     description:
-      "No need to worry about screen size. Anima's Landing Page UI Kit adapts to any screen size, from desktop to mobile.",
+      "All your past conversations during the simulations are saved and you are able to access them.",
   },
 ];
 
 const Menu = () => {
   const navigate = useNavigate();
+  const [userName, setUsername] = useState('');
+
+  useEffect(() => {
+    const name = localStorage.getItem('name');
+    if (name) {
+      setUsername(name);
+    }
+  }, []);
+
   const handleClick = (features) => {
     switch (features) {
       case "Simulator":
@@ -43,21 +54,22 @@ const Menu = () => {
     }
   };
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gray-100">
+    <div className="min-h-screen flex flex-col items-center bg-[#F8F9FF]">
       <MenuNavBar />
 
       <main className="flex flex-col items-center justify-center flex-grow">
-        <Typography variant="h4" component="h1" className="mt-8 mb-4">
-          Welcome Marya Sarah
-        </Typography>
-        <Typography
+        <h1 className="text-xl font-bold mt-8 mb-4" style={{ color: '#333333' }}>
+          Welcome {userName}
+        </h1>
+        <p
           variant="body1"
           component="p"
           className="mb-8 text-center max-w-2xl"
+          style={{ color: '#333333' }}
         >
-          Welcome XYZ to Khanmigo, your AI-powered assistant. You can access all
+          Welcome {userName} to 999 Coach AI, your AI-powered dispatcher coach. You can access all
           these features and unlock the power of AI.
-        </Typography>
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-screen-lg">
           {features.map((feature, index) => (
@@ -67,9 +79,9 @@ const Menu = () => {
               onClick={() => handleClick(feature.title)}
             >
               <CardContent>
-                <Typography variant="h5" component="div" className="mb-2">
+                <h6 style={{ color: '#333333' }} className="mb-2 font-bold">
                   {feature.title}
-                </Typography>
+                </h6>
                 <Typography variant="body2" color="text.secondary">
                   {feature.description}
                 </Typography>
@@ -81,5 +93,6 @@ const Menu = () => {
     </div>
   );
 };
+
 
 export default Menu;

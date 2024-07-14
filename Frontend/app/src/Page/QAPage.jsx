@@ -1,11 +1,11 @@
 import React from "react";
-
-import SimNavBar from "../Component/Simulator/SimNavBar";
 import QA from "../Component/QA/QA";
+import MenuNavBar from "../Component/Menu/MenuNavBar";
+
 function QAPage() {
   return (
     <main>
-      <SimNavBar />
+      <MenuNavBar />
       <QA />
     </main>
   );

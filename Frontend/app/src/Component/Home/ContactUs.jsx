@@ -38,7 +38,7 @@ function ContactUs() {
               </div>
               <div className="flex items-center space-x-2 gap-3">
                 <Email className="text-[#009379]" />
-                <span>hello@embuddy.com</span>
+                <span>hello@999coachai.com</span>
               </div>
             </div>
           </div>

@@ -61,7 +61,6 @@ async def simulate(request: ConversationModel):
     chat_history = request.chat_history
     scenario = request.scenario
     conversation = request.conversation
-    print(chat_history, scenario, conversation)
     response = simulate_chat(chat_history, scenario, conversation)
     return {"AI response": response}
 

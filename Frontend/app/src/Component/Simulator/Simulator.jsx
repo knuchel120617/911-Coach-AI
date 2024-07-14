@@ -15,7 +15,11 @@ import {
 } from "@mui/material";
 import SparklesIcon from "@mui/icons-material/Stars";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
+
 import CloseIcon from "@mui/icons-material/Close";
+
+import Buttons from "../Button/Buttons";
+
 
 const Simulator = () => {
   const [messages, setMessages] = useState([]);
@@ -98,7 +102,18 @@ const Simulator = () => {
   return (
     <Box className="p-6 flex flex-col items-center">
       <FormControl fullWidth variant="outlined" className="mb-4 max-w-2xl">
-        <InputLabel>Scenario definition</InputLabel>
+      <InputLabel
+        sx={{
+          fontFamily: 'Poppins, sans-serif', // Custom font
+          color: '#333333', // Custom text color
+          borderRadius: '8px', // Custom border radius
+          padding: '0 8px' // Optional: Adjust padding to match border radius
+        }}
+        
+        className = "text-sm"
+      >
+        Scenario definition
+      </InputLabel>
         <Select
           value={scenario}
           onChange={(e) => handleScenarioSelect(e.target.value)}
@@ -127,7 +142,16 @@ const Simulator = () => {
         </Select>
       </FormControl>
 
+
       <Box className="mb-4 w-full max-w-4xl">
+
+      <GuidelineCard
+        guidelines="Automation: AI can automate repetitive and mundane tasks, saving time and effort for humans. It can handle large volumes of data, perform complex calculations, and execute tasks with precision and consistency. This automation leads to increased productivity and efficiency in various industries."
+        className="mb-4"
+      />
+
+      <div className="mb-4 w-full max-w-4xl">
+
         {messages.map((message, index) => (
           <Box
             key={index}
@@ -151,72 +175,68 @@ const Simulator = () => {
             </Paper>
           </Box>
         ))}
-      </Box>
 
-      <Box display="flex" alignItems="center" mb={4}>
-        <SparklesIcon className="mr-2 text-green-500" />
-        <Typography variant="h6" className="text-center">
-          End call and generate feedback
-        </Typography>
-      </Box>
+=======
+      </div>
+      <div style={{
+        backgroundColor: '#F8F9FF', 
+        position: 'sticky',
+        bottom: 0,
+        width: '100%',
+        zIndex: 1000, // Ensure it stays on top
+      }} className="w-full flex flex-col">
+        <div className="flex flex-row justify-center items-center mb-4">
+          <SparklesIcon className="flex justify-center items-center mr-3 text-[#009379]" />
+          <p className="text-center">End call and generate feedback</p>
+        </div>
+        <div className="flex justify-center items-center flex-row w-full mb-4">
 
-      <Box display="flex" width="100%" maxWidth="4xl" mb={4}>
         <TextField
           fullWidth
           variant="outlined"
-          label="Send an instruction, question to the caller"
+          label="Send an instruction or a question to the caller"
+          style={{ fontFamily: 'Poppins, sans-serif' }}
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          style={{ marginRight: "10px" }}
+
+
+          className="flex rounded-lg"
+          InputProps={{ className: "rounded-lg" }}
+
         />
 
-        <Button
-          variant="contained"
-          color="primary"
+        <Buttons
           onClick={handleSend}
-          style={{
-            marginLeft: "10px",
-            padding: "10px 30px",
-            fontSize: "14px",
-            borderRadius: "50px",
-          }}
-        >
-          Submit
-        </Button>
 
-        <IconButton
-          color="primary"
-          onClick={handleHelpClick}
-          style={{ marginLeft: "10px" }}
-        >
-          <QuestionMarkIcon style={{ fontSize: "30px" }} />
-        </IconButton>
-      </Box>
+          primary
+          type="submit"
+          className="text-white bg-[#009379] px-10 py-5 border-none rounded-[10px] text-sm" 
+          style={{ minWidth: "auto", width: "auto", marginLeft: "10px" }}
 
-      <Modal open={helpModalOpen} onClose={handleHelpClose}>
-        <Box
-          position="absolute"
-          top="50%"
-          left="50%"
-          transform="translate(-50%, -50%)"
-          width={400}
-          bgcolor="background.paper"
-          p={4}
-          borderRadius="8px"
-          boxShadow={24}
         >
-          <Box display="flex" justifyContent="space-between" mb={2}>
-            <Typography variant="h6">Help</Typography>
-            <IconButton onClick={handleHelpClose}>
-              <CloseIcon />
-            </IconButton>
-          </Box>
-          <Typography>
-            This is a help modal. Here you can provide information to assist users.
-          </Typography>
-        </Box>
-      </Modal>
-    </Box>
+          Send
+        </Buttons>
+
+
+
+        <div className="flex items-center ml-[130px]">
+          <QuestionMarkIcon
+            style={{
+              fontSize: "30px", // Reduced size to fit better
+              color: "#009379", // Matched button color
+              cursor: "pointer",
+            }}
+            onClick={handleHelpClick}
+          />
+        </div>
+      </div>
+
+      <HelpModal open={helpModalOpen} handleClose={handleHelpClose} />
+    </div>
+      </div>
+
+
+
   );
 };
 

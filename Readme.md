@@ -24,16 +24,30 @@
 
 ## 🧐 Problem Statement <a name = "problem_statement"></a>
 
-TODO --> add description from the challenge description document
+Emergency dispatchers often face training that is out of date, along with outdated guidebooks and manuals. They lack access to modern technology in their daily work. This gap highlighted the need for designing and prototyping a conversational AI that can simulate various life-threatening scenarios, helping dispatchers to rehearse and improve their response skills.
 
 
 ## 💡 Idea / Solution <a name = "idea"></a>
 
-TODO --> explain our idea, what are we trying to built
+Our solution is a web application aimed for emergency medical dispatchers. Our users are able to create an account
+and login to the application, where they can simulate different medical emergency scenarios. They are able to have
+chat-based conversations with AI, who is acting as a caller to the emergency services. Additionally users have access
+to Q&A functionality, where they are able to get evidence-based information about different medical emergencies. 
+They have access to the Q&A functionality also during the simulations.
+
+TODO ---> what do we mention about feedback functionality
 
 ## ⛓️ Prototype <a name = "prototype"></a>
 
-TODO --> describe how our solution was built - architecture diagram
+Our application consists of a React frontend, that has been secured with Firebase authentication and
+a NodeJS backend that interacts with the MongoDB database. User information and their simulation data 
+is saved in the database. The AI element of the application has been built by utilizing Fast API,
+Pinecone vector database and Cohere LLM. The below diagram gives an overview of the architecture that has
+been implemented:
+
+![architecture](assets/Medihacks.png)
+
+TODO ---> add a link to the readmy file of the AI folder??
 
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
@@ -46,7 +60,8 @@ and testing purposes.
 
 ### Installing
 
-TODO --> should instructions contain how to run frontend and backend locally?
+Below instructions can be used to run either the frontend or backend application locally. For backend application,
+navigate to folder ./Backend and for frontend application, navigate to folder ./Frontend/app
 
 Install project dependencies:
 
@@ -60,11 +75,10 @@ To run this project locally run:
 npm run dev
 ```
 
-Run the Development Server: Once the dependencies are installed, you can start the development server by running:
-
 This command will build the project and start a local development server. You'll see messages indicating that the project is being compiled and the server is running.
 
-Access the Application: Open a web browser and navigate to http://localhost:3000. This is the default address where the React application will be served. You should see your React app running locally.
+Access the Application: Open a web browser and navigate to http://localhost:3000 to access the backend application and to
+http://localhost:5173 to access the frontend application.
 
 
 ## ⛏️ Built With <a name = "tech_stack"></a>
@@ -76,7 +90,7 @@ Access the Application: Open a web browser and navigate to http://localhost:3000
 - [Cohere](https://cohere.com) - Enterprise AI Platform
 
 ## ✍️ Authors <a name = "authors"></a>
-- [@MeriemTerki](https://github.com/MeriemTerki) 
-- [@adimidania](https://github.com/adimidania) 
-- [@Mahiambaw](https://github.com/Mahiambaw) 
-- [@mariberg](https://github.com/mariberg) 
+- [@MeriemTerki](https://github.com/MeriemTerki) - AI, integrating AI to frontend app
+- [@adimidania](https://github.com/adimidania)   - AI, Figma design, frontend
+- [@Mahiambaw](https://github.com/Mahiambaw)     - Frontend
+- [@mariberg](https://github.com/mariberg)       - Backend, frontend, integrating AI to frontend app

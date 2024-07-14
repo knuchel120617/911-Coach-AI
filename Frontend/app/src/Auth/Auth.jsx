@@ -1,7 +1,7 @@
 export const register = async (email, password, name) => {
   try {
     console.log("Login data:", { email, name, password }); // Check the data being sent
-    const response = await fetch("http://localhost:3000/users/register", {
+    const response = await fetch("https://medihacks-ka2dwt1hz-marikas-projects-22112c00.vercel.app/users/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export const register = async (email, password, name) => {
 export const login = async (email, password, name) => {
   try {
     console.log("Login data:", { email, name, password }); // Check the data being sent
-    const response = await fetch("http://localhost:3000/users/login", {
+    const response = await fetch("https://medihacks-ka2dwt1hz-marikas-projects-22112c00.vercel.app/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
