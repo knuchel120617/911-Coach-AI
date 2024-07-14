@@ -27,7 +27,7 @@ const NavBar = () => {
     setIsOpen(false);
   };
 
-  const logoPath = "/src/assets/logo/logo.svg";
+  const logoPath = "./assets/logo/logo.svg";
 
   return (
     <AppBar className="px-[40px]" id="nav-bar-home" position="static" color="transparent" elevation={0}>

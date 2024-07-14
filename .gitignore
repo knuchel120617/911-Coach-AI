@@ -1,6 +1,8 @@
 # Node.js Dependencies
 node_modules
 
+build/
+
 # Logs
 logs
 *.log
@@ -44,3 +46,7 @@ Thumbs.db
 
 *FirebaseService.json
 *vercel.json
+firebase.json
+firebase.prod.json
+.firebase/
+.firebaserc
