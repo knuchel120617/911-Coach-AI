@@ -32,23 +32,25 @@ Emergency dispatchers often face training that is out of date, along with outdat
 Our solution is a web application aimed at emergency medical dispatchers. Our users are able to create an account
 and log in to the application, where they can simulate different medical emergency scenarios. They are able to have
 chat-based conversations with AI, who is acting as a caller to emergency services. Additionally, users have access
-to Q&A functionality, where they are able to get evidence-based information about different medical emergencies. 
+to Q&A functionality, where they can get evidence-based information about different medical emergencies. 
 They have access to the Q&A functionality also during the simulations.
 
-We will soon integrate a feedback function that will provide users with insights about their performance based on protocols and EMD conversations that were retrieved from medical books.
+We will soon integrate a feedback function that will provide users with insights about their performance based on protocols and EMD conversations that were retrieved from medical books. The endpoint is already functional and gives good results.
+
+It's important to note that the core of our solution is our vector database which contains a curated list of scenarios along with protocols to follow, books, and article. More information about the AI features can be found [here](https://github.com/adimidania/911-Coach-AI/tree/main/AI).
 
 Check the [Figma prototype](https://www.figma.com/design/qIqalwlEH6M2GBUdpbUeUz/Landing-Page-UI-Kit---Fully-customizable-landing-page-UI-kit---Export-as-HTML-(Community)?node-id=0-1&t=hhnQ36NwNKehzHsu-1) to learn more about 911 Coach AI.
 ## ⛓️ Prototype <a name = "prototype"></a>
 
 Our application consists of a React frontend, that has been secured with Firebase authentication and
 a NodeJS backend that interacts with the MongoDB database. User information and their simulation data 
-is saved in the database. The AI element of the application has been built by utilizing Fast API,
+are saved in the database. The AI element of the application has been built by utilizing Fast API,
 Pinecone vector database and Cohere LLM. The below diagram gives an overview of the architecture that has
 been implemented:
 
 ![architecture](assets/Medihacks.png)
 
-TODO ---> add a link to the readmy file of the AI folder??
+More details about the AI features can be found [here](https://github.com/adimidania/911-Coach-AI/tree/main/AI).
 
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
