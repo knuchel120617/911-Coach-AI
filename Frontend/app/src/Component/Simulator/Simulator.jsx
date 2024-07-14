@@ -10,6 +10,7 @@ import {
   Box,
   Typography,
   Paper,
+  IconButton
 } from "@mui/material";
 import SparklesIcon from "@mui/icons-material/Stars";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
@@ -76,6 +77,36 @@ const Simulator = () => {
       }
     }
   };
+
+  const accessToken = localStorage.getItem('token');
+
+  const endCall = async () => {
+    console.log('clicked button to end convo');
+      try {
+        const response = await axios.post(
+          "https://medihacks-ka2dwt1hz-marikas-projects-22112c00.vercel.app/conversations",
+          //"http://localhost:3000/conversations",
+          {
+	        userId: localStorage.getItem('userId'),
+	        type: "simulation",
+	        category: scenario,
+          transcript: messages
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`, // Include access token in Authorization header
+            },
+          }
+        );
+
+        // Handle successful response
+    setScenario(""); // Reset scenario state to empty string
+    setMessages([]); // Reset messages state to an empty array
+
+      }  catch (error) {
+        console.error("Error saving conversation to database:", error);
+      }
+    };
 
   const handleHelpClick = () => {
     setHelpModalOpen(true);
@@ -177,8 +208,10 @@ const Simulator = () => {
         className="w-full flex flex-col"
       >
         <div className="flex flex-row justify-center items-center mb-4">
+        <IconButton onClick={() => endCall()}>
           <SparklesIcon className="flex justify-center items-center mr-3 text-[#009379]" />
           <p className="text-center">End call and generate feedback</p>
+          </IconButton>
         </div>
         <div className="flex justify-center items-center flex-row w-full mb-4">
           <TextField
