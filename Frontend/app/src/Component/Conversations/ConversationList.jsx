@@ -9,9 +9,6 @@ import { Typography, Avatar } from "@mui/material";
 import bin from "../../assets/Conversations/bin.png";
 import { useNavigate } from "react-router-dom";
 
-const [userId, setUserId] = useState(localStorage.getItem('userId'));
-const [accessToken, setAccessToken] = useState(localStorage.getItem('token'));
-
 
 const fetchData = async () => {
   try {
@@ -39,6 +36,8 @@ const fetchData = async () => {
 export default function ConversationsList() {
   const [items, setItems] = useState([]); // State to store fetched items
   const [selectedItem, setSelectedItem] = useState(null);
+  const [userId, setUserId] = useState(localStorage.getItem('userId'));
+  const [accessToken, setAccessToken] = useState(localStorage.getItem('token'));
 
   useEffect(() => {
     const getData = async () => {
