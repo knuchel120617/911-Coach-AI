@@ -1,24 +1,26 @@
-import React, { useState } from "react";
-import PersonIcon from "@mui/icons-material/Person";
-import { TextField } from "@mui/material";
+import React from 'react';
+import { Paper, Typography } from '@mui/material';
+import PersonIcon from '@mui/icons-material/Person';
 
 const ChatMessage = ({ message, isUser }) => {
-  const [input, setInput] = useState(message);
-
   return (
     <div
-      className={`flex items-center ${isUser ? "justify-end" : "justify-start"} my-2`}
+      className={`flex items-center ${isUser ? 'justify-end' : 'justify-start'} my-2 w-full max-w-4xl`}
     >
       {!isUser && <PersonIcon className="mr-2 text-[#009379]" />}
-      <div
-        className={`p-4 rounded-lg ml-2 text-md shadow-md flex w-full gap-14 mb-4 ${isUser ? "bg-[#E4ECEA]" : "bg-[#FFF]"} max-w-4xl`}
+      <Paper
+        elevation={3}
+        className={`p-4 rounded-lg ml-2 text-md shadow-md flex w-full gap-14 mb-4 ${isUser ? 'bg-[#E4ECEA]' : 'bg-[#FFF]'} max-w-4xl`}
       >
-        <p
+        <Typography
+          style={{
+            color: isUser ? '#0d47a1' : '#00796b',
+          }}
           fullWidth
         >
-          {input}
-          </p>
-      </div>
+          {message.comment}
+        </Typography>
+      </Paper>
       {isUser && <PersonIcon className="ml-2 text-[#333333]" />}
     </div>
   );

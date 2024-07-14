@@ -10,7 +10,7 @@ const QAMessage = ({ message, isUser }) => {
     <div
       className={`flex items-start ${isUser ? "justify-end" : "justify-start"} my-2`}
     >
-      {!isUser && <PersonIcon className="mr-2 text-[#009379]"/>}
+      
       <div
         className={`p-4 rounded-lg ml-2 text-md shadow-md flex w-full gap-14 mb-4 ${isUser ? "bg-[#E4ECEA]" : "bg-[#FFF]"} max-w-4xl`}
       >
@@ -18,7 +18,7 @@ const QAMessage = ({ message, isUser }) => {
           {message}
         </p>
       </div>
-      {isUser && <PersonIcon className="ml-2 text-[#333333]" />}
+      
     </div>
   );
 };
