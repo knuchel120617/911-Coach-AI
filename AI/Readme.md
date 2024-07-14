@@ -34,10 +34,7 @@ This endpoint retrieves information about a scenario to simulate based on the ty
 ```json
 {
   "Scenario": "scenario",
-  "Conversation": "conversation",
-  "Protocol": "protocol_steps",
-  "Reference": "scenario_data['metadata']['Reference']",
-  "Link": "scenario_data['metadata']['Link']"
+  "Conversation": "conversation"
 }
 ```
 
