@@ -120,7 +120,6 @@ def simulate_chat(chat_history, scenario, conversation):
     When you respond, JUST use the first person pronoun "I" to indicate that you are the caller. For example, "I am experiencing chest pain" or "I am at the corner of 5th and Main Street". Don't mention something like "The dispatcher is saying: XYZ".
     """
     conversation = []
-
     for msg in chat_history:
         author = msg.author
         comment = msg.comment
@@ -133,7 +132,7 @@ def simulate_chat(chat_history, scenario, conversation):
         messages=conversation,
         model="j2-ultra",
     )
-    return response.outputs[0].text
+    return re.sub(r'^The dispatcher is saying:\s*', '', response.outputs[0].text)
 
 def feedback(conversation, chat_history):
     pass
