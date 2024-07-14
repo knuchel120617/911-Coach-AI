@@ -132,7 +132,8 @@ def simulate_chat(chat_history, scenario, conversation):
         messages=conversation,
         model="j2-ultra",
     )
-    return re.sub(r'^The dispatcher is saying:\s*', '', response.outputs[0].text)
+    cleaned_text = re.sub(r'^The dispatcher is saying:\s*', '', response.outputs[0].text)
+    return cleaned_text
 
 def feedback(conversation, chat_history):
     pass
