@@ -34,7 +34,7 @@ const NavBar = () => {
       <Toolbar className="px-4 flex justify-between items-center mt-2">
       <div className="flex flex-row gap-3 justify-center items-center align-center">
       <img src={logoPath} alt="Logo" width="27.5px" height="auto"/>
-      <p className="font-medium" style={{ color: '#333333' }}>999 Coach AI</p>
+      <p className="font-medium" style={{ color: '#333333' }}>911 Coach AI</p>
       </div>
       
 

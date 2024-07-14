@@ -76,7 +76,7 @@ const MenuNavBar = () => {
         <div className="flex flex-row gap-3 items-center">
           <img src={logoPath} alt="Logo" width="27.5px" height="auto" />
           <p variant="h6" className="font-medium" style={{ color: '#333333' }}>
-            999 Coach AI
+            911 Coach AI
           </p>
         </div>
 
