@@ -73,7 +73,7 @@ const QA = () => {
     <div className="p-6 flex flex-col items-center">
      
       <GuidelineCard
-        guidelines="Utilize our Q&A functionality to ask medical questions sourced from our AI-powered database. All responses are derived from current protocols and industry best practices, with additional links provided for further reference."
+        guidelines="Utilize our Q&A functionality to ask medical questions sourced from our AI. All responses are derived from current protocols and industry best practices, with additional links provided for further reference."
         className="mb-4 shadow-lg"
       />
 

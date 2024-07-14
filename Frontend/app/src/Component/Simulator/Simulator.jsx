@@ -162,7 +162,7 @@ const Simulator = () => {
 
       <Box className="mb-4 w-full max-w-4xl">
         <GuidelineCard
-          guidelines="Automation: AI can automate repetitive and mundane tasks, saving time and effort for humans. It can handle large volumes of data, perform complex calculations, and execute tasks with precision and consistency. This automation leads to increased productivity and efficiency in various industries."
+          guidelines="This is a simulation, but it reflects a real-world scenario. Provide immediate instructions for basic first aid if necessary. Once you finish dealing with the situation, click on end call to get a feedback. Start the conversation when you are ready!"
           className="mb-4"
         />
 
