@@ -12,6 +12,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Buttons from "../Button/Buttons";
 import { useNavigate } from "react-router-dom";
+import logo from "/logo.svg";
 
 const MenuNavBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -58,7 +59,7 @@ const MenuNavBar = () => {
     }
   };
 
-  const logoPath = "/src/assets/logo/logo.svg";
+  
   return (
     <AppBar
       sx={{
@@ -74,7 +75,7 @@ const MenuNavBar = () => {
     >
       <Toolbar className="flex justify-between items-center mt-2">
         <div className="flex flex-row gap-3 items-center">
-          <img src={logoPath} alt="Logo" width="27.5px" height="auto" />
+          <img src={logo} alt="Logo" width="27.5px" height="auto" />
           <p variant="h6" className="font-medium" style={{ color: '#333333' }}>
             911 Coach AI
           </p>

@@ -11,7 +11,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Buttons from "../Button/Buttons";
-import logo from "../../assets/logo/logo.svg";
+import logo from "/logo.svg";
 
 const NavBar = () => {
   const naviage = useNavigate();
