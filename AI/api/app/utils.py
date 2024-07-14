@@ -56,6 +56,7 @@ def format_scenario_2(scenario_data):
 
     conversation_match = re.search(conversation_pattern, text, re.DOTALL)
     conversation = conversation_match.group(1).strip() if conversation_match else None
+    print('Results:', conversation)
     return {
         "Scenario": scenario,
         "Conversation": conversation
@@ -75,7 +76,7 @@ def question_answer(question):
     results = extract_document_info(results)
     if len(results) == 0:
         response = co.generate(
-            prompt=f"""You are a AI-powered assistant that answer questions related to medical emergencies. You should provide a concise and accurate response to the Emergency medical dispatcher agent. Add references if needed, here's the question: {question}""",
+            prompt=f"""You are a AI-powered assistant that answer questions related to a medical emergency. You should provide a concise and accurate response to the Emergency medical dispatcher agent. Add references if needed, here's the question: {question}""",
             model='command-xlarge-nightly',
             max_tokens=800,
             temperature=0.2,
@@ -95,20 +96,28 @@ def question_answer(question):
 
 def get_scenario(emergency_type):
     embeddings = CohereEmbeddings(cohere_api_key=cohere_secret_key, user_agent="dispatch-ai")
-    vector = embeddings.embed_query(f"Emergency of Type {emergency_type} with a scenario and a conversation between caller and dispatcher")
+    vector = embeddings.embed_query(f"Scenario of {emergency_type} with a conversation")
     pc = Pinecone(api_key=pinecone_secret_key)
     index = pc.Index(index_name)
     results = index.query(
         vector=vector,
-        top_k=3,
+        top_k=2,
         include_metadata=True,
-        metadata={'Emergency Type': emergency_type, 'Type': "Scenario"}
+        filters={'Emergency Type': emergency_type, 'Type': 'Scenario'}
     )
     return format_scenario_2(results['matches'][0])
 
 def simulate_chat(chat_history, scenario, conversation):
     client = AI21Client(api_key= ai21_secret_key)
-    system = f"You are a person in a dying need for help and you are calling a dispatcher for a medical emergency. You are going through this scenario: {scenario}. Respond to the dispatcher (user) questions with one at a time one. You should get information about your situation inspired from this conversation: {conversation}. Mention one information at a time and don't add any unnecessary details."
+    system = f"""
+    You are a person calling 911 because you are experiencing the following emergency scenario: {scenario}.
+    Below is an example conversation between a dispatcher and you as a  caller in a similar scenario. Use it to guide your responses.
+
+    Example conversation:
+    {conversation}
+
+    As the caller, you must respond to the dispatcher's (user) questions based on this example conversation and the scenario. Provide one piece of information at a time, relevant to the scenario. Do not repeat these instructions in your response. Focus on providing specific and helpful information to the dispatcher.
+    """
     conversation = []
 
     for msg in chat_history:
