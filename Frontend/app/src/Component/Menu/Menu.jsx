@@ -8,22 +8,22 @@ const features = [
   {
     title: "Simulator",
     description:
-      "No need to worry about screen size. Anima's Landing Page UI Kit adapts to any screen size, from desktop to mobile.",
+      "Simulate an emergency call where you are the dispatcher and chatting with the caller.",
   },
   {
     title: "Q&A",
     description:
-      "No need to worry about screen size. Anima's Landing Page UI Kit adapts to any screen size, from desktop to mobile.",
+      "Access our AI-powered Q&A feature where you are able to get your medical emergency related questions answered.",
   },
   {
     title: "AI Feedback",
     description:
-      "No need to worry about screen size. Anima's Landing Page UI Kit adapts to any screen size, from desktop to mobile.",
+      "Get feedback on your completed simulations and how well you followed the relevant protocols.",
   },
   {
     title: "My conversations",
     description:
-      "No need to worry about screen size. Anima's Landing Page UI Kit adapts to any screen size, from desktop to mobile.",
+      "All your past conversations during the simulations are saved and you are able to access them.",
   },
 ];
 
@@ -67,7 +67,7 @@ const Menu = () => {
           className="mb-8 text-center max-w-2xl"
           style={{ color: '#333333' }}
         >
-          Welcome XYZ to Khanmigo, your AI-powered assistant. You can access all
+          Welcome {userName} to 999 Coach AI, your AI-powered dispatcher coach. You can access all
           these features and unlock the power of AI.
         </p>
 

@@ -28,7 +28,7 @@ function HowItWorks() {
             Key Features
           </h2>
           <p className="leading-7 lg:text-[18px]" style={{ color: '#333333' }}>
-            EM-Buddy empowers you to become a more confident and effective
+            999 Coach AI empowers you to become a more confident and effective
             dispatcher by providing you with the following features:
           </p>
         </div>
