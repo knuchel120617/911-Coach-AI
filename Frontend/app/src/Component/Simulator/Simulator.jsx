@@ -171,7 +171,7 @@ const Simulator = () => {
             key={index}
             display="flex full-width"
             justifyContent={message.author === "ai" ? "flex-start" : "flex-end"}
-            className={`${message.author === "ai" ? "bg-[#8fcfc4]" : "bg-[#ffffff]"} p-4 rounded-lg ml-2 text-md bg-transparent flex w-full gap-14 mb-4 max-w-4xl`}
+            className={`${message.author === "ai" ? "bg-[#8fcfc4]" : "bg-[#ffffff]"} p-4 rounded-lg ml-2 text-md flex w-full gap-14 mb-4 max-w-4xl`}
             mb={2}
           >
               <p

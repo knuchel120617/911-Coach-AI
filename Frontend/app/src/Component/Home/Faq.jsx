@@ -22,7 +22,6 @@ function Faq() {
       <div className="w-full flex  flex-col justify-center items-center mb-[20px] gap-8 mr-[20px]">
         <Accordion
           className="border border-gray-300 w-full max-w-lg lg:max-w-[1200px]"
-          expanded={expanded === "panel1"}
           onChange={handleChange("panel1")}
         >
           <AccordionSummary

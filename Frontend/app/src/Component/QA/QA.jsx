@@ -14,8 +14,8 @@ import SparklesIcon from "@mui/icons-material/Stars";
 
 const QA = () => {
   const [messages, setMessages] = useState([
-    { text: "Hello", isUser: true },
-    { text: "Hey", isUser: false },
+    { text: "Question", isUser: true },
+    { text: "Answer", isUser: false },
   ]);
   const [input, setInput] = useState("");
 

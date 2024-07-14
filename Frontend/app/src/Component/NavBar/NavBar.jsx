@@ -11,6 +11,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Buttons from "../Button/Buttons";
+import logo from "../../assets/logo/logo.svg";
 
 const NavBar = () => {
   const naviage = useNavigate();
@@ -27,13 +28,12 @@ const NavBar = () => {
     setIsOpen(false);
   };
 
-  const logoPath = "./assets/logo/logo.svg";
 
   return (
     <AppBar className="px-[40px]" id="nav-bar-home" position="static" color="transparent" elevation={0}>
       <Toolbar className="px-4 flex justify-between items-center mt-2">
       <div className="flex flex-row gap-3 justify-center items-center align-center">
-      <img src={logoPath} alt="Logo" width="27.5px" height="auto"/>
+      <img src={logo} alt="Logo" width="27.5px" height="auto"/>
       <p className="font-medium" style={{ color: '#333333' }}>911 Coach AI</p>
       </div>
       
