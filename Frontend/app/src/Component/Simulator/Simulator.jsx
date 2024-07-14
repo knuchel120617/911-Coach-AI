@@ -135,7 +135,7 @@ const Simulator = () => {
           />
         </div>
       </div>
-
+      
       <HelpModal open={helpModalOpen} handleClose={handleHelpClose} />
     </div>
       </div>

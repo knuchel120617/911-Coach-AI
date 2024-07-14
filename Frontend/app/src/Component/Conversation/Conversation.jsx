@@ -9,17 +9,17 @@ const Conversation = () => {
   const { item } = location.state || {};
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gray-100">
+    <div className="min-h-screen flex flex-col items-center bg-[#F8F9FF]">
     <MenuNavBar />
-    <main className="flex flex-col items-start justify-start">
-    <Typography variant="h5" component="h1" className="mt-8 mb-4">
+    <main className="flex flex-col items-start justify-start p-4">
+    <h1 className="mt-8 mb-4 text-center text-xl font-bold" style={{ color: '#333333' }}>
           Conversation Transcript
-        </Typography>
+        </h1>
         {item && (
           <div className="border border-gray-300 p-4 rounded-md shadow-md">
-            <Typography variant="h6" component="h2" className="mb-2">
-              {item.title} {item.date}
-            </Typography>
+            <h6 className="mb-2 font-bold" style={{color: '#333333'}}>
+              {item.title} | {item.date}
+            </h6>
             
         
         {item.transcript.map((entry, index) => (
@@ -27,12 +27,12 @@ const Conversation = () => {
             <div
           key={index}
           className={`mb-2 p-2 rounded-lg ${
-            entry.author === "ai" ? "bg-green-100" : "bg-gray-100"
+            entry.author === "ai" ? "bg-[#E4ECEA]" : "bg-gray-100"
           }`}
         >
-          <Typography variant="body2" className="font-bold">
+          <p>
             {entry.author === "ai" ? "Caller" : "Dispatcher"}: {entry.comment}
-          </Typography>
+          </p>
         </div>
 
           </div>
