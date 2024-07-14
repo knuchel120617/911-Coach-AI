@@ -47,7 +47,6 @@ def format_scenario(scenario_data):
 
 def format_scenario_2(scenario_data):
     scenario_pattern = r"Scenario:\s*(.*?)\n"
-    protocol_pattern = r"Protocol:\s*(.*?)\s+conversation:"
     conversation_pattern = r"conversation:\s*(.*)"
 
     text = scenario_data["metadata"]["text"]
@@ -57,7 +56,7 @@ def format_scenario_2(scenario_data):
 
     conversation_match = re.search(conversation_pattern, text, re.DOTALL)
     conversation = conversation_match.group(1).strip() if conversation_match else None
-
+    print('Results:', conversation)
     return {
         "Scenario": scenario,
         "Conversation": conversation
@@ -97,14 +96,14 @@ def question_answer(question):
 
 def get_scenario(emergency_type):
     embeddings = CohereEmbeddings(cohere_api_key=cohere_secret_key, user_agent="dispatch-ai")
-    vector = embeddings.embed_query(emergency_type)
+    vector = embeddings.embed_query(f"Scenario of {emergency_type} with a conversation")
     pc = Pinecone(api_key=pinecone_secret_key)
     index = pc.Index(index_name)
     results = index.query(
         vector=vector,
         top_k=2,
         include_metadata=True,
-        metadata={'Emergency Type': emergency_type, 'Type': 'Scenario'}
+        filters={'Emergency Type': emergency_type, 'Type': 'Scenario'}
     )
     return format_scenario_2(results['matches'][0])
 
