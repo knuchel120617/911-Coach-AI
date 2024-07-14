@@ -33,6 +33,10 @@ class ConversationModel(BaseModel):
     scenario: str
     conversation: str
 
+class FeedbackModel(BaseModel):
+    chat_history: List[MessageModel]
+    protocol: str
+
 # Define the root route
 @app.get("/")
 async def root():
@@ -66,5 +70,8 @@ async def simulate(request: ConversationModel):
 
 # Feedback Endpoint
 @app.post("/feedback")
-async def scenario(request: ScenarioModel):
-    pass
+async def scenario(request: FeedbackModel):
+    chat_history = request.chat_history
+    protocol = request.protocol
+    response = feedback(chat_history, protocol)
+    return {"AI feedback": response}

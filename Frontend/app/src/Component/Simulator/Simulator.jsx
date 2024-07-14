@@ -53,7 +53,7 @@ const Simulator = () => {
 
       try {
         const response = await axios.post(
-          "https://nine11-coach-ai.onrender.com/simulation",
+          "https://em-buddy.onrender.com/simulation",
           {
             chat_history: updatedMessages,
             scenario: scenarioDescription,

@@ -86,6 +86,32 @@ This endpoint takes the scenario, conversation, and chat history to return the A
 }
 ```
 
+### Feedback
+This endpoint takes the chat history and the protocol that should be followed by the dispatcher and returns a feedback. c
+
+**URL:** `endpoint/feedback`
+**Input:** 
+```json
+{
+  "chat_history": [
+    {
+      "author": "str",
+      "comment": "str"
+    }
+  ],
+
+  "protocol": "str"
+}
+```
+
+**Output:**
+```json
+{
+  "AI feedback": "response"
+}
+```
+
+
 ### MessageModel
 
 The `MessageModel` class represents a message in the chat history.

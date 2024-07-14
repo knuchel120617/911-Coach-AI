@@ -135,5 +135,15 @@ def simulate_chat(chat_history, scenario, conversation):
     cleaned_text = re.sub(r'^The dispatcher is saying:\s*', '', response.outputs[0].text)
     return cleaned_text
 
-def feedback(conversation, chat_history):
-    pass
+def feedback(chat_history, protocol):
+    co = cohere.Client(cohere_secret_key)
+    response = co.generate(
+            prompt=f"""You are an AI-powered assistant aimed at giving insights on Medical dispatcher's performance. Check the conversation below and provide feedback on the dispatcher's performance. Make sure to provide constructive feedback and suggestions on how the dispatcher can improve. Here's the conversation: {conversation}. The protocol steps are: {protocol}""",
+            model='command-xlarge-nightly',
+            max_tokens=800,
+            temperature=0.2,
+            stop_sequences=[],
+            return_likelihoods='NONE'
+    )
+
+    return response.generations[0].text
