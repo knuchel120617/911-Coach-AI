@@ -56,7 +56,6 @@ def format_scenario_2(scenario_data):
 
     conversation_match = re.search(conversation_pattern, text, re.DOTALL)
     conversation = conversation_match.group(1).strip() if conversation_match else None
-    print('Results:', conversation)
     return {
         "Scenario": scenario,
         "Conversation": conversation
@@ -76,7 +75,7 @@ def question_answer(question):
     results = extract_document_info(results)
     if len(results) == 0:
         response = co.generate(
-            prompt=f"""You are a AI-powered assistant that answer questions related to a medical emergency. You should provide a concise and accurate response to the Emergency medical dispatcher agent. Add references if needed, here's the question: {question}""",
+            prompt=f"""You are a AI-powered assistant that answer questions related to medical emergencies. You should provide a concise and accurate response to the Emergency medical dispatcher agent. Add references if needed, here's the question: {question}""",
             model='command-xlarge-nightly',
             max_tokens=800,
             temperature=0.2,
