@@ -10,10 +10,9 @@
 
 ---
 
-<p align="center"> This project is our solution to the Emergency Dispatch Conversation AI - challenge at MediHacks 2024 - Hackathon (https://www.medihacks.org/).
+<p align="center"> This project is our solution to the Emergency Dispatch Conversation AI - challenge at MediHacks 2024 - Hackathon (https://www.medihacks.org/).</p>
 
-<p align="center">Explore our deployed application [here](https://medihacks-8be43.web.app/).</p>
-</p>
+
 
 ## 📝 Table of Contents
 - [Problem Statement](#problem_statement)
