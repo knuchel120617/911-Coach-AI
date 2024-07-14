@@ -20,7 +20,6 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import Buttons from "../Button/Buttons";
 
-
 const Simulator = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -102,18 +101,17 @@ const Simulator = () => {
   return (
     <Box className="p-6 flex flex-col items-center">
       <FormControl fullWidth variant="outlined" className="mb-4 max-w-2xl">
-      <InputLabel
-        sx={{
-          fontFamily: 'Poppins, sans-serif', // Custom font
-          color: '#333333', // Custom text color
-          borderRadius: '8px', // Custom border radius
-          padding: '0 8px' // Optional: Adjust padding to match border radius
-        }}
-        
-        className = "text-sm"
-      >
-        Scenario definition
-      </InputLabel>
+        <InputLabel
+          sx={{
+            fontFamily: 'Poppins, sans-serif', // Custom font
+            color: '#333333', // Custom text color
+            borderRadius: '8px', // Custom border radius
+            padding: '0 8px' // Optional: Adjust padding to match border radius
+          }}
+          className="text-sm"
+        >
+          Scenario definition
+        </InputLabel>
         <Select
           value={scenario}
           onChange={(e) => handleScenarioSelect(e.target.value)}
@@ -142,101 +140,119 @@ const Simulator = () => {
         </Select>
       </FormControl>
 
-
       <Box className="mb-4 w-full max-w-4xl">
+        <div className="mb-4 w-full max-w-4xl">
+          {messages.map((message, index) => (
+            <Box
+              key={index}
+              display="flex"
+              justifyContent={message.author === "ai" ? "flex-start" : "flex-end"}
+              mb={2}
+            >
+              <Paper
+                elevation={3}
+                style={{
+                  padding: "10px",
+                  borderRadius: "10px",
+                  backgroundColor: message.author === "ai" ? "#e0f7fa" : "#bbdefb",
+                }}
+              >
+                <Typography
+                  style={{ color: message.author === "ai" ? "#00796b" : "#0d47a1" }}
+                >
+                  {message.comment}
+                </Typography>
+              </Paper>
+            </Box>
+          ))}
+        </div>
+        <div
+          style={{
+            backgroundColor: '#F8F9FF',
+            position: 'sticky',
+            bottom: 0,
+            width: '100%',
+            zIndex: 1000, // Ensure it stays on top
+          }}
+          className="w-full flex flex-col"
+        >
+          <div className="flex flex-row justify-center items-center mb-4">
+            <SparklesIcon className="flex justify-center items-center mr-3 text-[#009379]" />
+            <p className="text-center">End call and generate feedback</p>
+          </div>
+          <div className="flex justify-center items-center flex-row w-full mb-4">
+            <TextField
+              fullWidth
+              variant="outlined"
+              label="Send an instruction or a question to the caller"
+              style={{ fontFamily: 'Poppins, sans-serif' }}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              className="flex rounded-lg"
+              InputProps={{ className: "rounded-lg" }}
+            />
 
-      <GuidelineCard
-        guidelines="Automation: AI can automate repetitive and mundane tasks, saving time and effort for humans. It can handle large volumes of data, perform complex calculations, and execute tasks with precision and consistency. This automation leads to increased productivity and efficiency in various industries."
-        className="mb-4"
-      />
+            <Buttons
+              onClick={handleSend}
+              primary
+              type="submit"
+              className="text-white bg-[#009379] px-10 py-5 border-none rounded-[10px] text-sm"
+              style={{ minWidth: "auto", width: "auto", marginLeft: "10px" }}
+            >
+              Send
+            </Buttons>
 
-      <div className="mb-4 w-full max-w-4xl">
+            <div className="flex items-center ml-[130px]">
+              <QuestionMarkIcon
+                style={{
+                  fontSize: "30px", // Reduced size to fit better
+                  color: "#009379", // Matched button color
+                  cursor: "pointer",
+                }}
+                onClick={handleHelpClick}
+              />
+            </div>
+          </div>
 
-        {messages.map((message, index) => (
-          <Box
-            key={index}
-            display="flex"
-            justifyContent={message.author === "ai" ? "flex-start" : "flex-end"}
-            mb={2}
+          {/* Help Modal Component */}
+          <Modal
+            open={helpModalOpen}
+            onClose={handleHelpClose}
+            aria-labelledby="help-modal-title"
+            aria-describedby="help-modal-description"
           >
-            <Paper
-              elevation={3}
-              style={{
-                padding: "10px",
-                borderRadius: "10px",
-                backgroundColor: message.author === "ai" ? "#e0f7fa" : "#bbdefb",
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: 400,
+                bgcolor: 'background.paper',
+                border: '2px solid #000',
+                boxShadow: 24,
+                p: 4,
               }}
             >
-              <Typography
-                style={{ color: message.author === "ai" ? "#00796b" : "#0d47a1" }}
-              >
-                {message.comment}
+              <Typography id="help-modal-title" variant="h6" component="h2">
+                Help Modal
               </Typography>
-            </Paper>
-          </Box>
-        ))}
+              <Typography id="help-modal-description" sx={{ mt: 2 }}>
+                Add your help modal content here.
+              </Typography>
+              <IconButton
+                aria-label="close"
+                onClick={handleHelpClose}
+                sx={{ position: 'absolute', right: 8, top: 8, color: 'primary.main' }}
+              >
+                <CloseIcon />
+              </IconButton>
+            </Box>
+          </Modal>
 
-=======
-      </div>
-      <div style={{
-        backgroundColor: '#F8F9FF', 
-        position: 'sticky',
-        bottom: 0,
-        width: '100%',
-        zIndex: 1000, // Ensure it stays on top
-      }} className="w-full flex flex-col">
-        <div className="flex flex-row justify-center items-center mb-4">
-          <SparklesIcon className="flex justify-center items-center mr-3 text-[#009379]" />
-          <p className="text-center">End call and generate feedback</p>
         </div>
-        <div className="flex justify-center items-center flex-row w-full mb-4">
-
-        <TextField
-          fullWidth
-          variant="outlined"
-          label="Send an instruction or a question to the caller"
-          style={{ fontFamily: 'Poppins, sans-serif' }}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-
-
-          className="flex rounded-lg"
-          InputProps={{ className: "rounded-lg" }}
-
-        />
-
-        <Buttons
-          onClick={handleSend}
-
-          primary
-          type="submit"
-          className="text-white bg-[#009379] px-10 py-5 border-none rounded-[10px] text-sm" 
-          style={{ minWidth: "auto", width: "auto", marginLeft: "10px" }}
-
-        >
-          Send
-        </Buttons>
-
-
-
-        <div className="flex items-center ml-[130px]">
-          <QuestionMarkIcon
-            style={{
-              fontSize: "30px", // Reduced size to fit better
-              color: "#009379", // Matched button color
-              cursor: "pointer",
-            }}
-            onClick={handleHelpClick}
-          />
-        </div>
-      </div>
-      
-      <HelpModal open={helpModalOpen} handleClose={handleHelpClose} />
-    </div>
-      </div>
-
-
-
+      </Box>
+    </Box>
   );
 };
 
