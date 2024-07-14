@@ -12,6 +12,7 @@
 
 <p align="center"> This project is our solution to the Emergency Dispatch Conversation AI - challenge at MediHacks 2024 - Hackathon (https://www.medihacks.org/).
 
+<p align="center">Explore our deployed application [here](https://medihacks-8be43.web.app/).</p>
 </p>
 
 ## 📝 Table of Contents
@@ -39,7 +40,8 @@ We will soon integrate a feedback function that will provide users with insights
 
 It's important to note that the core of our solution is our vector database which contains a curated list of scenarios along with protocols to follow, books, and article. More information about the AI features can be found [here](https://github.com/adimidania/911-Coach-AI/tree/main/AI).
 
-Check the [Figma prototype](https://www.figma.com/design/qIqalwlEH6M2GBUdpbUeUz/Landing-Page-UI-Kit---Fully-customizable-landing-page-UI-kit---Export-as-HTML-(Community)?node-id=0-1&t=hhnQ36NwNKehzHsu-1) to learn more about 911 Coach AI.
+Check the [Figma prototype](https://www.figma.com/design/qIqalwlEH6M2GBUdpbUeUz/Landing-Page-UI-Kit---Fully-customizable-landing-page-UI-kit---Export-as-HTML-(Community)?node-id=0-1&t=hhnQ36NwNKehzHsu-1) to learn more about 911 Coach AI and [deployed application](https://medihacks-8be43.web.app/).
+
 ## ⛓️ Prototype <a name = "prototype"></a>
 
 Our application consists of a React frontend, that has been secured with Firebase authentication and
@@ -56,9 +58,6 @@ More details about the AI features can be found [here](https://github.com/adimid
 ## 🏁 Getting Started <a name = "getting_started"></a>
 These instructions will get you a copy of the project up and running on your local machine for development 
 and testing purposes. 
-
-### Prerequisites
-
 
 
 ### Installing

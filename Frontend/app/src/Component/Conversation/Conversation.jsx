@@ -8,6 +8,8 @@ const Conversation = () => {
   const location = useLocation();
   const { item } = location.state || {};
 
+  console.log('this is the item I have', item);
+
   return (
     <div className="min-h-screen flex flex-col items-center bg-[#F8F9FF]">
     <MenuNavBar />
