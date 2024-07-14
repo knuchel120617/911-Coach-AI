@@ -17,10 +17,6 @@ const conversationSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  //id: {
-  //  type: mongoose.Schema.Types.ObjectId,
-  //  required: true
-  //},
   type: {
     type: String,
     required: true,

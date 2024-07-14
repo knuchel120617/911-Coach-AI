@@ -12,13 +12,6 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  //uid: {
-  //  type: String,
-  //  required: true,
-  //  unique: true
-  //},
-  // conversation counter?
-  // statistics?
 },
   { timestamps: true }
 )

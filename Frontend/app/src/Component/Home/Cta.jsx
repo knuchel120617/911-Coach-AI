@@ -14,7 +14,7 @@ function Cta() {
           Experience the best AI-powered tool in EMD
         </h2>
         <p className="text-lg mb-6 mx-[15px]">
-          Transcend EMD Training. Master the Art of Dispatch with 999 Coach AI.
+          Transcend EMD Training. Master the Art of Dispatch with 911 Coach AI.
         </p>
         <div className="w-auto">
           <Buttons

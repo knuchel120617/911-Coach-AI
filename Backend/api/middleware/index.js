@@ -25,7 +25,6 @@ const verifyToken = (req, res, next) => {
       next()
     })
     .catch((error) => {
-      console.error("Error verifying token:", error)
       return res.status(403).send({ message: "Could not authorize" })
     })
 }

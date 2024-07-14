@@ -31,15 +31,15 @@ function Faq() {
             className="bg-gray-100"
           >
             <p className="font-medium">
-              What is 999 Coach AI? How is it different from ChatGPT and similar
+              What is 911 Coach AI? How is it different from ChatGPT and similar
               tools?
             </p>
           </AccordionSummary>
           <AccordionDetails className="border-t border-gray-200 p-4">
             <p>
-              Unlike general chatbots like ChatGPT, 999 Coach AI isn't designed for
+              Unlike general chatbots like ChatGPT, 911 Coach AI isn't designed for
               casual conversation. It's a specialized AI assistant focused on
-              emergency medical dispatch (EMD). 999 Coach AI offers a curated
+              emergency medical dispatch (EMD). 911 Coach AI offers a curated
               knowledge base specifically tailored to EMD needs, including
               evidence-based Q&A, medical resources, and realistic simulation
               scenarios. It's your free training partner to become a more
@@ -58,11 +58,11 @@ function Faq() {
             id="panel2d-header"
             className="bg-gray-100"
           >
-            <p className="font-medium">Can anyone use 999 Coach AI?</p>
+            <p className="font-medium">Can anyone use 911 Coach AI?</p>
           </AccordionSummary>
           <AccordionDetails className="border-t border-gray-200 p-4">
             <p>
-              Anybody can use the Alpha version of 999 Coach AI completely for free.
+              Anybody can use the Alpha version of 911 Coach AI completely for free.
               You just have to create an account.
             </p>
           </AccordionDetails>
@@ -79,7 +79,7 @@ function Faq() {
             className="bg-gray-100"
           >
             <p className="font-medium">
-              Are these all the features that 999 Coach AI offers?
+              Are these all the features that 911 Coach AI offers?
             </p>
           </AccordionSummary>
           <AccordionDetails className="border-t border-gray-200 p-4">
