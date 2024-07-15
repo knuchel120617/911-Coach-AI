@@ -67,7 +67,7 @@ const Menu = () => {
           className="mb-8 text-center max-w-2xl"
           style={{ color: '#333333' }}
         >
-          Welcome {userName} to 999 Coach AI, your AI-powered dispatcher coach. You can access all
+          Welcome {userName} to 911 Coach AI, your AI-powered dispatcher coach. You can access all
           these features and unlock the power of AI.
         </p>
 

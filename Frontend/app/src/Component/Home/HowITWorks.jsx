@@ -10,18 +10,14 @@ import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import feedback from "../../assets/Home/feedback.png";
 import dialog from "../../assets/Home/dialog.png";
 import qa from "../../assets/Home/question-and-answer.png";
+import image from "../../assets/Home/home_image.jpeg";
 
 function HowItWorks() {
   return (
     <section className="how-it-works px-[40px] py-16">
       <div className="container mx-auto px-4 flex flex-col items-center justify-center gap-8  lg:gap-16">
         <div className="w-full mb-8 px-[40px]">
-          <video className="w-full" controls autoPlay loop>
-            <source
-              src="https://www.youtube.com/watch?v=VMT56AqStUU"
-              type="video/mp4"
-            />
-          </video>
+          <img className="w-full" src={image} width="400" height="200"/>
         </div>
         <div className="text-center mb-[20px]">
           <h2 className="text-[20px] font-bold leading-relaxed tracking-wide lg:text-[40px] mb-[20px]" style={{ color: '#333333' }}>
