@@ -1,3 +1,6 @@
+//TODO feedback is displayed when clicking the button, how to dynamically display the feedback that
+//TODO is returned from the backend?
+
 import React, { useState } from "react";
 import axios from "axios";
 import {
@@ -19,6 +22,7 @@ import Buttons from "../Button/Buttons";
 import HelpModal from "./HelpModal"
 
 import GuidelineCard from "./GuidelineCard";
+import FeedbackCard from "./FeedbackCard";
 
 const Simulator = () => {
   const [messages, setMessages] = useState([]);
@@ -27,6 +31,18 @@ const Simulator = () => {
   const [scenarioDescription, setScenarioDescription] = useState("");
   const [conversation, setConversation] = useState("");
   const [helpModalOpen, setHelpModalOpen] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [feedback, setFeedback] = useState(null);
+
+  console.log('feedback is', feedback);
+
+  const fetchDummyFeedback = () => {
+    setTimeout(() => {
+      // Set the dummy feedback
+      setFeedback('This is your dummy feedback. Everything is working correctly!');
+    }, 1000); 
+    console.log('feedback is', feedback);
+  };
 
   const fetchScenarioDetails = async (selectedScenario) => {
     try {
@@ -80,8 +96,11 @@ const Simulator = () => {
 
   const accessToken = localStorage.getItem('token');
 
+  //TODO endCall needs to save the discussion, but also send api request to generate feedback
   const endCall = async () => {
     console.log('clicked button to end convo');
+    setShowFeedback(true);
+    fetchDummyFeedback(); //TODO change this to real API call
       try {
         const response = await axios.post(
           "https://medihacks-ka2dwt1hz-marikas-projects-22112c00.vercel.app/conversations",
@@ -102,6 +121,7 @@ const Simulator = () => {
         // Handle successful response
     setScenario(""); // Reset scenario state to empty string
     setMessages([]); // Reset messages state to an empty array
+    
 
       }  catch (error) {
         console.error("Error saving conversation to database:", error);
@@ -197,12 +217,20 @@ const Simulator = () => {
         }}
         className="w-full flex flex-col"
       >
+        {!showFeedback && (
         <div className="flex flex-row justify-center items-center mb-4">
         <IconButton onClick={() => endCall()}>
           <SparklesIcon className="flex justify-center items-center mr-3 text-[#009379]" />
           <p className="text-center">End call and generate feedback</p>
           </IconButton>
         </div>
+        )}
+        {showFeedback && (
+         <FeedbackCard
+         feedback={feedback}
+         className="mb-4"
+       />
+      )}
         <div className="flex justify-center items-center flex-row w-full mb-4">
           <TextField
             fullWidth
